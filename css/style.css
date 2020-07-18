@@ -474,6 +474,15 @@ pre {
     .container {
       max-width: 1140px; } }
 
+      @media (max-width: 767px) {
+
+          /* ... */
+
+          .top-content .carousel-control-prev,
+          .top-content .carousel-control-next { display: none; }
+          .top-content .carousel-indicators li { margin-left: 10px; margin-right: 10px; }
+
+        /* ... */}
 .container-fluid {
   width: 100%;
   padding-right: 15px;
