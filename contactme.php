@@ -1,3 +1,6 @@
+<?php
+require('constant.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,6 +49,42 @@
   <link rel="stylesheet" href="css/icomoon.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://kit.fontawesome.com/98d66e4736.js" crossorigin="anonymous"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+  <script src="component/jquery/jquery-3.2.1.min.js"></script>
+	<script>
+	$(document).ready(function (e){
+		$("#frmContact").on('submit',(function(e){
+			e.preventDefault();
+			$("#mail-status").hide();
+			$('#send-message').hide();
+			$('#loader-icon').show();
+			$.ajax({
+				url: "contact.php",
+				type: "POST",
+				dataType:'json',
+				data: {
+				"name":$('input[name="name"]').val(),
+				"email":$('input[name="email"]').val(),
+				"phone":$('input[name="phone"]').val(),
+				"content":$('textarea[name="content"]').val(),
+				"g-recaptcha-response":$('textarea[id="g-recaptcha-response"]').val()},
+				success: function(response){
+				$("#mail-status").show();
+				$('#loader-icon').hide();
+				if(response.type == "error") {
+					$('#send-message').show();
+					$("#mail-status").attr("class","error");
+				} else if(response.type == "message"){
+					$('#send-message').hide();
+					$("#mail-status").attr("class","success");
+				}
+				$("#mail-status").html(response.text);
+				},
+				error: function(){}
+			});
+		}));
+	});
+	</script>
 </head>
   <body>
 
@@ -55,27 +94,28 @@
       </div>
     </div>
     <div class="page">
-    <nav id="colorlib-main-nav" role="navigation">
-      <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
-      <div class="js-fullheight colorlib-table">
-      	<div class="img" style="background-image: url(images/author-2.jpg);"></div>
-        <div class="colorlib-table-cell js-fullheight">
-          <div class="row no-gutters">
-            <div class="col-md-12 text-center">
-              <h1 class="mb-4"><a href="index.html" class="logo">Beckham Muff</a></h1>
-              <ul>
-                <li><a href="index.html"><span><small>01</small>Home</span></a></li>
-                <li><a href="about.html"><span><small>02</small>Resume</span></a></li>
-                <li><a href="services.html"><span><small>03</small>Services</span></a></li>
-                <li><a href="portfolio.html"><span><small>04</small>Portfolio</span></a></li>
-                <li><a href="blog.html"><span><small>05</small>Blog</span></a></li>
-                <li class="active"><a href="contact.html"><span><small>06</small>Contact</span></a></li>
-              </ul>
+      <nav id="colorlib-main-nav" role="navigation">
+        <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
+        <div class="js-fullheight colorlib-table">
+          <div class="img" style="background-image: url(images/author-2.jpg);"></div>
+          <div class="colorlib-table-cell js-fullheight">
+            <div class="row no-gutters">
+              <div class="col-md-12 text-center">
+                <h1 class="mb-4"><a href="index.html" class="logo">ML Creatives</a></h1>
+                <ul>
+                  <li><a href="index.html"><span><small>01</small>Home</span></a></li>
+                  <li><a href="resume.html"><span><small>02</small>Resume</span></a></li>
+                  <li><a href="projects.html"><span><small>03</small>Projects</span></a></li>
+                  <li><a href="portfolio.html"><span><small>04</small>Designing</span></a></li>
+                  <li><a href="extracurri.html"><span><small>05</small>Extracurriculars</span></a></li>
+                  <li><a href="hobby.html"><span><small>06</small>Free time stuff</span></a></li>
+                  <li class="active"><a href="contact.html"><span><small>07</small>Contact me</span></a></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
     <div id="colorlib-page">
       <header>
@@ -83,7 +123,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="colorlib-navbar-brand">
-                <a class="colorlib-logo" href="index.html"><span class="logo-img" style="background-image: url(images/person_1.jpg);"></span>Beckham Muff</a>
+                <a class="colorlib-logo" href="index.html"><span class="logo-img" style="background-image: url(images/person_1.gif);"></span>ML Creatives</a>
               </div>
               <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
             </div>
@@ -98,41 +138,34 @@
               <h2 class="h4">Contact Information</h2>
             </div>
             <div class="w-100"></div>
-            <div class="col-md-3">
-              <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+            <div class="col-md-4">
+              <p><span>Email:</span> <a href="mailto:muditlal02@gmail.com">muditlal02@gmail.com</a></p>
             </div>
             <div class="col-md-3">
-              <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
-            </div>
-            <div class="col-md-3">
-              <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-            </div>
-            <div class="col-md-3">
-              <p><span>Website:</span> <a href="#">yoursite.com</a></p>
+              <p><span>Website:</span> <a href="index.html" target="_blank">muditlal.com</a></p>
             </div>
           </div>
           <div class="row block-9">
-            <div class="col-md-6 pr-md-5">
-              <form action="#">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Your Name">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Your Email">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Subject">
-                </div>
-                <div class="form-group">
-                  <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-                </div>
-                <div class="form-group">
-                  <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-                </div>
-              </form>
+            <div class="col-md-9 pr-md-5">
+              <form id="frmContact" action="" method="POST" novalidate="novalidate">
+          			<div class="form-group">
+          				<input class="form-control" type="text" id="name" name="name" placeholder="Your Name" title="Please enter your name" class="required" aria-required="true" required>
+          			</div>
+          			<div class="form-group">
+          				<input class="form-control" type="text" id="email" name="email" placeholder="Email" title="Please enter your email address" class="required email" aria-required="true" required>
+          			</div>
+          			<div class="form-group">
+          				<input class="form-control" type="text" id="phone" name="phone" placeholder="Phone Number" title="Please enter your phone number" class="required phone" aria-required="true" required>
+          			</div>
+          			<div class="form-group">
+          				<textarea class="form-control" cols="30" rows="7" id="comment-content" name="content" placeholder="Message"></textarea>
+          			</div>
+          			<div class="g-recaptcha" data-sitekey="6Lf6lLQZAAAAAAZLV3Q2CJubDzVQ3dqbHMZWYOgh"></div><br>
+          			<div id="mail-status"></div>
+          			<button class="btn btn-primary py-3 px-5"" type="Submit" id="send-message" style="clear:both;">Send Message</button>
+          		</form>
 
             </div>
-            <div class="col-md-6" id="map"></div>
           </div>
         </div>
       </section>
