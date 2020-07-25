@@ -2,7 +2,7 @@
   // Define images
   var getQuote, quotes, totalQuotes;
 
-  quotes = ['There is no monument dedicated to the memory of a committee.', 'Wanting to be someone you\'re not is a waste of the person you are.', 'If you can find a path with no obstacles, it probably doesn\'t lead anywhere.', 'The great thing about a computer notebook is that no matter how much you stuff into it, it doesn\'t get bigger or heavier.', 'Mistakes are the portals of discovery.', 'Death is a friend of ours; and he that is not ready to entertain him is not at home.', 'Don\'t let yourself forget what it\'s like to be sixteen.'];
+  quotes = ['Be the change you want to see in the world', 'Wanting to be someone you\'re not is a waste of the person you are.', 'If you can find a path with no obstacles, it probably doesn\'t lead anywhere.', 'You will either experience the pain of discipline or the pain of regret, the choice is yours.', 'Mistakes are the portals of discovery.', 'Death is a friend of ours; and he that is not ready to entertain him is not at home.', 'Don\'t let yourself forget what it\'s like to be sixteen.'];
 
   // Counts total images
   totalQuotes = quotes.length;
@@ -18,7 +18,7 @@
 
   getQuote();
 
-  $('button').on('click', function(e) {
+  $('quote').on('click', function(e) {
     e.preventDefault();
     return getQuote();
   });
