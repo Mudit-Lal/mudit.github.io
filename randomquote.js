@@ -2,7 +2,7 @@
   // Define images
   var getQuote, quotes, totalQuotes;
 
-  quotes = ['Be the change you want to see in the world', 'Wanting to be someone you\'re not is a waste of the person you are.', 'If you can find a path with no obstacles, it probably doesn\'t lead anywhere.', 'You will either experience the pain of discipline or the pain of regret, the choice is yours.', 'Mistakes are the portals of discovery.', 'Death is a friend of ours; and he that is not ready to entertain him is not at home.', 'Don\'t let yourself forget what it\'s like to be sixteen.'];
+  quotes = ['Be the change you want to see in the world', 'Twenty years from nowyou will be more disappointed by the things that you didn\'t do than by the ones you did.', 'If you can find a path with no obstacles, it probably doesn\'t lead anywhere.', 'You will either experience the pain of discipline or the pain of regret, the choice is yours.', 'Mistakes are the portals of discovery.', 'Recognize the excuses aren\'t real.', 'Die with memories not dreams!', 'You can die only once, make sure it\'s worth it.','Rest at the end, not in the middle.','When you feel like quitting, think about why you started', 'The expert has failed more times than the beginner has ever tried.'];
 
   // Counts total images
   totalQuotes = quotes.length;
