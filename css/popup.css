@@ -67,6 +67,17 @@
   line-height: normal;
 }
 
+.popup .proimage {
+  max-height: 65%;
+  text-align: center;
+  overflow: auto;
+  margin: auto;
+  display: block;
+  max-width: 100%;
+  min-width: 40%
+  border-radius: 5%;
+}
+
 @media screen and (max-width: 700px){
   .box{
     width: 70%;
