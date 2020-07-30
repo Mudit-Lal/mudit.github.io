@@ -46,6 +46,13 @@
   <link rel="stylesheet" href="css/icomoon.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://kit.fontawesome.com/98d66e4736.js" crossorigin="anonymous"></script>
+  <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+  </style>
 </head>
   <body>
 
@@ -95,112 +102,65 @@
 	      <div class="container mt-5">
 	      	<div class="row justify-content-center mb-5 pb-5">
             <div class="col-md-7 text-center heading-section ftco-animate">
-              <span>Blog</span>
-              <h2>Read our blog</h2>
+              <span>HERE ARE THE</span>
+              <h2>WEBSITES</h2>
+              <span>I WORKED ON <i class="fas fa-laugh"></i></span>
             </div>
           </div>
-	        <div class="row">
-	          <div class="col-md-4 ftco-animate">
-	            <div class="blog-entry">
-	              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
-	              </a>
-	              <div class="text p-4 d-block">
-	                <div class="meta mb-3">
-	                  <div><a href="#">July 12, 2018</a></div>
-	                  <div><a href="#">Admin</a></div>
-	                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-	                </div>
-	                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-	              </div>
-	            </div>
-	          </div>
-	          <div class="col-md-4 ftco-animate">
-	            <div class="blog-entry" data-aos-delay="100">
-	              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-	              </a>
-	              <div class="text p-4">
-	                <div class="meta mb-3">
-	                  <div><a href="#">July 12, 2018</a></div>
-	                  <div><a href="#">Admin</a></div>
-	                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-	                </div>
-	                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-	              </div>
-	            </div>
-	          </div>
-	          <div class="col-md-4 ftco-animate">
-	            <div class="blog-entry" data-aos-delay="200">
-	              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-	              </a>
-	              <div class="text p-4">
-	                <div class="meta mb-3">
-	                  <div><a href="#">July 12, 2018</a></div>
-	                  <div><a href="#">Admin</a></div>
-	                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-	                </div>
-	                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-	              </div>
-	            </div>
-	          </div>
-	          <div class="col-md-4 ftco-animate">
-	            <div class="blog-entry">
-	              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_4.jpg');">
-	              </a>
-	              <div class="text p-4 d-block">
-	                <div class="meta mb-3">
-	                  <div><a href="#">July 12, 2018</a></div>
-	                  <div><a href="#">Admin</a></div>
-	                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-	                </div>
-	                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-	              </div>
-	            </div>
-	          </div>
-	          <div class="col-md-4 ftco-animate">
-	            <div class="blog-entry" data-aos-delay="100">
-	              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_5.jpg');">
-	              </a>
-	              <div class="text p-4">
-	                <div class="meta mb-3">
-	                  <div><a href="#">July 12, 2018</a></div>
-	                  <div><a href="#">Admin</a></div>
-	                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-	                </div>
-	                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-	              </div>
-	            </div>
-	          </div>
-	          <div class="col-md-4 ftco-animate">
-	            <div class="blog-entry" data-aos-delay="200">
-	              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_6.jpg');">
-	              </a>
-	              <div class="text p-4">
-	                <div class="meta mb-3">
-	                  <div><a href="#">July 12, 2018</a></div>
-	                  <div><a href="#">Admin</a></div>
-	                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-	                </div>
-	                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-	              </div>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="row mt-5">
-	          <div class="col text-center">
-	            <div class="block-27">
-	              <ul>
-	                <li><a href="#">&lt;</a></li>
-	                <li class="active"><span>1</span></li>
-	                <li><a href="#">2</a></li>
-	                <li><a href="#">3</a></li>
-	                <li><a href="#">4</a></li>
-	                <li><a href="#">5</a></li>
-	                <li><a href="#">&gt;</a></li>
-	              </ul>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
+
+        <div id="demo" class="carousel slide" data-ride="carousel">
+          <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+            <li data-target="#demo" data-slide-to="3"></li>
+            <li data-target="#demo" data-slide-to="4"></li>
+          </ul>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="images/websites/mlctconlineweb.png" alt="MLCTC Online" style="height:100%;">
+              <div class="carousel-caption" style="background-color: rgba(0, 0, 0, 0.7);">
+                <h3><b>MLCTC Online</b></h3>
+                <p><a>Website for online legal consultancy</a></p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="images/websites/mlctcweb.png" alt="Chicago" width="1920" height="1080">
+              <div class="carousel-caption" style="background-color: rgba(0, 0, 0, 0.7);">
+                <h3><b>MLCTC</b></h3>
+                <p>Wesbite for a legal consultancy firm</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="images/websites/pravidweb.png" alt="New York" width="1100" height="500">
+              <div class="carousel-caption" style="background-color: rgba(0, 0, 0, 0.7);">
+                <h3><b>Pravid</b></h3>
+                <p>Website for an National Level science exhibition</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="images/websites/questweb.png" alt="New York" width="1100" height="500">
+              <div class="carousel-caption" style="background-color: rgba(0, 0, 0, 0.7);">
+                <h3><b>The Quest</b></h3>
+                <p>Wesbite developed for National level quiz competition</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="images/websites/xenoweb.png" alt="New York" width="1100" height="500">
+              <div class="carousel-caption" style="background-color: rgba(0, 0, 0, 0.7);">
+                <h3><b>Xenotron</b></h3>
+                <p>Website for National level technology festival</p>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a>
+        </div>
+       </div>
 	    </section>
 
       <footer class="ftco-footer ftco-bg-dark ftco-section" style="font-size:2px;margin-top:0;margin-bottom:0;">
