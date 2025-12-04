@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Mudit Lal - Founder, engineer and designer from Lucknow, Bharat. Building ventures that serve communities across India.">
+    <meta name="author" content="Mudit Lal">
+    <title>About | The Office of Mudit Lal</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="About | The Office of Mudit Lal">
+    <meta property="og:description" content="Mudit Lal is a founder, engineer and designer from Lucknow, Bharat. Building ventures that serve communities across India.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://muditlal.com/about">
+
+    <!-- Favicon placeholder -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/98d66e4736.js" crossorigin="anonymous"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124820630-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-124820630-2');
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="/" class="nav-brand">
+            <span class="nav-brand-label">The Office of</span>
+            <span class="nav-brand-name">Mudit Lal</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="/about" class="nav-link active">About</a></li>
+            <li><a href="/press" class="nav-link">Press</a></li>
+            <li><a href="mailto:office@muditlal.com" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main class="about-page">
+        <!-- About Header -->
+        <header class="about-header">
+            <p class="about-office-name">The Office of Mudit Lal</p>
+            <h1 class="about-title">About</h1>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="about-hero">
+            <div class="about-hero-image">
+                <img src="/images/about/piera-mudit-candid.jpg" alt="Mudit Lal hosting the PIERA Launch Event">
+            </div>
+            <p class="about-hero-caption">Hosting the PIERA Launch Event</p>
+        </div>
+
+        <div class="about-container">
+            <!-- Brief Bio -->
+            <section class="about-intro">
+                <p class="about-intro-text">
+                    Mudit Lal is a founder, engineer and designer from Lucknow, Bharat. He graduated from Arizona State University in December 2025 and is building ventures that serve communities across India.
+                </p>
+                <p class="about-intro-text">
+                    Rooted in values passed down by his parents—staying grounded, remaining close to people, and serving the community—Mudit believes that meaningful work begins with understanding the lives it aims to touch. His approach is shaped by gratitude: for his teachers and mentors, for the opportunities he has been given, and for the responsibility that comes with them.
+                </p>
+                <p class="about-intro-text">
+                    Whether through design, technology, or institution-building, his focus remains the same: contributing to the places and people that shaped him.
+                </p>
+            </section>
+
+            <!-- Extended Bio -->
+            <section class="about-bio">
+                <div class="bio-section">
+                    <h2 class="bio-heading">Roots</h2>
+                    <p class="bio-text">
+                        Mudit grew up in Lucknow with values shaped by his parents—being grounded, staying close to people, and serving the community. These principles continue to guide his work today.
+                    </p>
+                </div>
+
+                <div class="bio-section">
+                    <h2 class="bio-heading">Education</h2>
+                    <p class="bio-text">
+                        He completed his schooling at The Indian Public School in Dehradun before moving to the United States to study at Arizona State University. At ASU, he pursued a Bachelor of Science in Technological Entrepreneurship and Management (TEM) and a Bachelor of Science in Engineering (Robotics), while also taking a graduate seminar on technology and innovation with President Michael Crow.
+                    </p>
+                </div>
+
+                <div class="bio-section">
+                    <h2 class="bio-heading">Service at ASU</h2>
+                    <p class="bio-text">
+                        Beyond academics, Mudit dedicated time to community and mentorship. He founded the India Policy and Economy Research Club (PIERA), served as a residential peer mentor, mentored first-year engineering students, and worked as an International Relations & Initiatives Assistant at the International Students and Scholars Center.
+                    </p>
+                </div>
+
+                <div class="bio-section">
+                    <h2 class="bio-heading">Current Work</h2>
+                    <p class="bio-text">
+                        Today, Mudit leads a team across his ventures—<a href="https://devalok.in" target="_blank" rel="noopener">Devalok</a> and <a href="https://oshm.in" target="_blank" rel="noopener">Oshm</a>—while establishing an office in Lucknow to continue this work from home.
+                    </p>
+                </div>
+
+                <div class="bio-section">
+                    <h2 class="bio-heading">Recognition</h2>
+                    <p class="bio-text">
+                        In December 2025, Mudit was selected as the Convocation Speaker and Impact Award recipient for the Fulton Schools of Engineering at ASU. He has been featured in The Chronicle of Higher Education, ASU News, and QS Insights Magazine.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="about-footer">
+                <p>For inquiries or event invitations, please contact <a href="mailto:office@muditlal.com">office@muditlal.com</a></p>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        // Mobile Navigation Toggle
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('active');
+            document.getElementById('navToggle').classList.toggle('active');
+        }
+
+        // Close nav when clicking a link (mobile)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+                document.getElementById('navToggle').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

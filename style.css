@@ -948,6 +948,197 @@ body::before {
 
 
 /* =====================================================
+   ABOUT PAGE STYLES
+   ===================================================== */
+
+/* About Page Container */
+.about-page {
+    padding-top: 100px;
+}
+
+/* About Header */
+.about-header {
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    position: relative;
+}
+
+.about-header::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 2rem;
+    background: var(--gold);
+}
+
+.about-office-name {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    margin-bottom: 1rem;
+}
+
+.about-title {
+    font-family: Georgia, serif;
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin: 0;
+    color: var(--charcoal);
+}
+
+/* About Hero Image */
+.about-hero {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.about-hero-image {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    background: var(--cream-dark);
+}
+
+.about-hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.about-hero-caption {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    letter-spacing: 0.5px;
+}
+
+/* About Container */
+.about-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+}
+
+/* Brief Bio / Intro */
+.about-intro {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border-light);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.about-intro-text {
+    font-family: Georgia, serif;
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+}
+
+.about-intro-text:last-child {
+    margin-bottom: 0;
+}
+
+/* Extended Bio Sections */
+.about-bio {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.bio-section {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.bio-section:nth-child(1) { animation-delay: 0.1s; }
+.bio-section:nth-child(2) { animation-delay: 0.2s; }
+.bio-section:nth-child(3) { animation-delay: 0.3s; }
+.bio-section:nth-child(4) { animation-delay: 0.4s; }
+.bio-section:nth-child(5) { animation-delay: 0.5s; }
+
+.bio-heading {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.bio-heading::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+}
+
+.bio-text {
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--charcoal-light);
+}
+
+.bio-text a {
+    color: var(--burgundy);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-pale);
+    transition: border-color 0.3s ease;
+}
+
+.bio-text a:hover {
+    border-color: var(--burgundy);
+}
+
+/* About Footer */
+.about-footer {
+    text-align: center;
+    padding-top: 3rem;
+    margin-top: 3rem;
+    border-top: 1px solid var(--border-light);
+    opacity: 0;
+    animation: fadeInUp 0.6s ease 0.6s forwards;
+}
+
+.about-footer p {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.about-footer a {
+    color: var(--burgundy);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.about-footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* =====================================================
    ANIMATIONS
    ===================================================== */
 
@@ -1121,5 +1312,27 @@ body::before {
     
     .press-video-card {
         padding: 1.75rem;
+    }
+
+    /* About Page */
+    .about-page {
+        padding-top: 80px;
+    }
+
+    .about-header {
+        padding: 3rem 1.5rem 2rem;
+    }
+
+    .about-container {
+        padding: 1.5rem 1.5rem 3rem;
+    }
+
+    .about-intro-text {
+        font-size: 1.05rem;
+    }
+
+    .about-hero {
+        padding: 0 1.5rem;
+        margin-bottom: 2rem;
     }
 }
