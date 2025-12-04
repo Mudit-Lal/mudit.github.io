@@ -141,6 +141,16 @@
                 document.getElementById('navToggle').classList.remove('active');
             });
         });
+
+        // Hero image blur-to-clear animation on load
+        const heroImg = document.querySelector('.about-hero-image img');
+        if (heroImg) {
+            if (heroImg.complete) {
+                heroImg.classList.add('loaded');
+            } else {
+                heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
+            }
+        }
     </script>
 </body>
 </html>

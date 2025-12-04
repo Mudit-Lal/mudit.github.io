@@ -1014,7 +1014,14 @@ body::before {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 0.6s ease;
+    transition: transform 0.6s ease, filter 0.8s ease, opacity 0.8s ease;
+    filter: blur(20px);
+    opacity: 0.6;
+}
+
+.about-hero-image img.loaded {
+    filter: blur(0);
+    opacity: 1;
 }
 
 .about-hero-caption {
