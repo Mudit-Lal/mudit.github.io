@@ -16,509 +16,42 @@
     <!-- Favicon placeholder -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
 
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/98d66e4736.js" crossorigin="anonymous"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124820630-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'UA-124820630-2');
     </script>
-    
-    <style>
-        /* CSS Variables */
-        :root {
-            --burgundy: #722F37;
-            --burgundy-dark: #5a252c;
-            --burgundy-light: #8a3a44;
-            --gold: #C9A227;
-            --gold-light: #D4AF37;
-            --gold-pale: #E8D5A3;
-            --cream: #FAF8F5;
-            --cream-dark: #F5F0E8;
-            --charcoal: #1a1a1a;
-            --charcoal-light: #2d2d2d;
-            --text-muted: #6b6b6b;
-        }
-
-        /* Reset & Base */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            background-color: var(--cream);
-            color: var(--charcoal);
-            min-height: 100vh;
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        /* Subtle background texture */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(114, 47, 55, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(201, 162, 39, 0.04) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 40px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        /* Gold accent line */
-        .gold-line {
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
-            margin: 0 auto 40px auto;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 0.2s forwards;
-        }
-
-        /* Decorative star */
-        .decorative-star {
-            text-align: center;
-            font-size: 20px;
-            color: var(--gold);
-            letter-spacing: 12px;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 0.3s forwards;
-        }
-
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .office-label {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--burgundy);
-            margin-bottom: 10px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 0.4s forwards;
-        }
-
-        .name {
-            font-size: clamp(32px, 6vw, 42px);
-            font-weight: 400;
-            color: var(--charcoal);
-            letter-spacing: 3px;
-            margin-bottom: 8px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 0.5s forwards;
-        }
-
-        .tagline {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 13px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 0.6s forwards;
-        }
-
-        /* Status Section */
-        .status-section {
-            text-align: center;
-            margin-bottom: 60px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 0.7s forwards;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 12px 28px;
-            border: 1px solid var(--gold-pale);
-            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(250,248,245,0.9) 100%);
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--burgundy);
-            position: relative;
-        }
-
-        .status-badge::before,
-        .status-badge::after {
-            content: '✦';
-            color: var(--gold);
-            font-size: 8px;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .status-badge::before {
-            left: 10px;
-        }
-
-        .status-badge::after {
-            right: 10px;
-        }
-
-        .status-message {
-            margin-top: 25px;
-            font-size: 17px;
-            color: var(--charcoal-light);
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Convocation Section */
-        .convocation-section {
-            background: var(--cream-dark);
-            border-left: 3px solid var(--burgundy);
-            padding: 35px 40px;
-            margin-bottom: 50px;
-            position: relative;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 0.9s forwards;
-        }
-
-        .convocation-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100%;
-            background: linear-gradient(90deg, transparent 0%, rgba(201, 162, 39, 0.05) 100%);
-            pointer-events: none;
-        }
-
-        .section-label {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 10px;
-            font-weight: 400;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 12px;
-        }
-
-        .convocation-title {
-            font-size: 20px;
-            font-weight: 400;
-            color: var(--charcoal);
-            margin-bottom: 8px;
-        }
-
-        .convocation-subtitle {
-            font-size: 15px;
-            color: var(--burgundy);
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-
-        .event-details {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 13px;
-            color: var(--charcoal-light);
-            margin-bottom: 25px;
-            line-height: 1.9;
-        }
-
-        .event-details strong {
-            color: var(--charcoal);
-            font-weight: 500;
-        }
-
-        .cta-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-primary {
-            background: var(--burgundy);
-            color: #fff;
-            border: 1px solid var(--burgundy);
-        }
-
-        .cta-primary:hover {
-            background: var(--burgundy-dark);
-            border-color: var(--burgundy-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(114, 47, 55, 0.25);
-        }
-
-        .cta-secondary {
-            background: transparent;
-            color: var(--burgundy);
-            border: 1px solid var(--burgundy);
-        }
-
-        .cta-secondary:hover {
-            background: var(--burgundy);
-            color: #fff;
-            transform: translateY(-2px);
-        }
-
-        .cta-icon {
-            width: 14px;
-            height: 14px;
-            fill: currentColor;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            text-align: center;
-            margin-bottom: 50px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 1.1s forwards;
-        }
-
-        .contact-label {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 10px;
-            font-weight: 400;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-        }
-
-        .contact-email {
-            font-size: 18px;
-            color: var(--burgundy);
-            text-decoration: none;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .contact-email::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--gold);
-            transition: width 0.3s ease;
-        }
-
-        .contact-email:hover {
-            color: var(--burgundy-dark);
-        }
-
-        .contact-email:hover::after {
-            width: 100%;
-        }
-
-        /* Social Links */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            border: 1px solid var(--gold-pale);
-            border-radius: 50%;
-            color: var(--burgundy);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: var(--burgundy);
-            border-color: var(--burgundy);
-            color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(114, 47, 55, 0.2);
-        }
-
-        .social-link svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(201, 162, 39, 0.2);
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 1.3s forwards;
-        }
-
-        .footer-office {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 10px;
-            font-weight: 400;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 10px;
-        }
-
-        .footer-location {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 12px;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-
-        .ventures {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 8px 20px;
-        }
-
-        .venture-link {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 11px;
-            color: var(--burgundy);
-            text-decoration: none;
-            letter-spacing: 1px;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .venture-link:hover {
-            opacity: 1;
-        }
-
-        .venture-separator {
-            color: var(--gold-pale);
-            font-size: 10px;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Floating animation for decorative elements */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-5px);
-            }
-        }
-
-        .decorative-star {
-            animation: fadeInUp 0.8s ease-out 0.3s forwards, float 4s ease-in-out 1.5s infinite;
-        }
-
-        /* Shimmer effect on gold line */
-        @keyframes shimmer {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
-        }
-
-        .gold-line {
-            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 25%, #fff 50%, var(--gold-light) 75%, var(--gold) 100%);
-            background-size: 200% 100%;
-            animation: fadeInUp 0.8s ease-out 0.2s forwards, shimmer 3s ease-in-out 2s infinite;
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .container {
-                padding: 40px 25px;
-            }
-
-            .convocation-section {
-                padding: 25px 20px;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .cta-button {
-                justify-content: center;
-                width: 100%;
-            }
-
-            .social-links {
-                gap: 15px;
-            }
-
-            .ventures {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .venture-separator {
-                display: none;
-            }
-        }
-    </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="/" class="nav-brand">
+            <span class="nav-brand-label">The Office of</span>
+            <span class="nav-brand-name">Mudit Lal</span>
+        </a>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/" class="nav-link active">Home</a></li>
+            <li><a href="/press" class="nav-link">Press</a></li>
+            <li><a href="mailto:office@muditlal.com" class="nav-link">Contact</a></li>
+        </ul>
+        
+        <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
     <main class="container">
         <!-- Gold Accent Line -->
         <div class="gold-line"></div>
@@ -611,5 +144,21 @@
             </div>
         </footer>
     </main>
+
+    <script>
+        // Mobile Navigation Toggle
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('active');
+            document.getElementById('navToggle').classList.toggle('active');
+        }
+        
+        // Close nav when clicking a link (mobile)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+                document.getElementById('navToggle').classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
