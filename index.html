@@ -204,6 +204,43 @@
 
                 html.setAttribute('data-theme', newTheme);
                 localStorage.setItem('theme', newTheme);
+
+                // GA4 Event: Theme Toggle
+                gtag('event', 'theme_toggle', {
+                    'theme': newTheme
+                });
+            });
+        })();
+
+        // GA4 Event Tracking
+        (function() {
+            // Contact clicks
+            document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+                link.addEventListener('click', () => {
+                    gtag('event', 'contact_click', {
+                        'method': 'email'
+                    });
+                });
+            });
+
+            // Social link clicks
+            document.querySelectorAll('.social-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    const platform = link.getAttribute('aria-label') || 'unknown';
+                    gtag('event', 'social_click', {
+                        'platform': platform
+                    });
+                });
+            });
+
+            // Venture link clicks
+            document.querySelectorAll('.venture-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    const venture = link.textContent.trim();
+                    gtag('event', 'venture_click', {
+                        'venture': venture
+                    });
+                });
             });
         })();
     </script>
