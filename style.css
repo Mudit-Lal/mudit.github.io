@@ -697,7 +697,7 @@ body::before {
 }
 
 .press-card {
-    background: white;
+    background: var(--cream);
     border: 1px solid var(--border-light);
     position: relative;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -909,7 +909,7 @@ body::before {
 }
 
 .press-video-card {
-    background: var(--charcoal);
+    background: #1a1a1a;
     color: white;
     padding: 2rem 2.5rem;
     text-decoration: none;
@@ -918,6 +918,11 @@ body::before {
     position: relative;
     overflow: hidden;
     display: block;
+}
+
+[data-theme="dark"] .press-video-card {
+    background: #2d2d2d;
+    border: 1px solid var(--border-light);
 }
 
 .press-video-card::before {
