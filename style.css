@@ -576,8 +576,17 @@ body::before {
     transform: scale(1.05);
 }
 
+/* WIP ventures use solid brand colors instead of images */
 .venture-thumbnail.blurred img {
-    filter: blur(8px) saturate(0.8);
+    display: none;
+}
+
+.venture-card[data-brand="oshm"] .venture-thumbnail.blurred {
+    background: var(--oshm-brand);
+}
+
+.venture-card[data-brand="brahmalok"] .venture-thumbnail.blurred {
+    background: var(--brahmalok-brand);
 }
 
 /* Venture Content */
@@ -1636,14 +1645,9 @@ body::before {
     }
 
     .venture-thumbnail,
-    .venture-featured .venture-thumbnail {
-        width: 100%;
-        height: 120px;
-    }
-
+    .venture-featured .venture-thumbnail,
     .venture-wip-card .venture-thumbnail {
-        width: 100%;
-        height: 80px;
+        display: none;
     }
 
     .ventures-wip-grid {
