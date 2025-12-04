@@ -511,7 +511,7 @@ body::before {
     position: absolute;
     top: 0;
     left: 0;
-    width: 4px;
+    width: 3px;
     height: 100%;
     opacity: 0.6;
     transition: opacity 0.3s ease;
@@ -554,38 +554,9 @@ body::before {
     background: linear-gradient(135deg, rgba(26, 107, 124, 0.03) 0%, var(--cream) 100%);
 }
 
-/* Venture Thumbnail */
+/* Venture Thumbnail - Hidden */
 .venture-thumbnail {
-    flex-shrink: 0;
-    width: 80px;
-    height: 80px;
-    border-radius: 3px;
-    overflow: hidden;
-    background: var(--cream-dark);
-}
-
-.venture-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.venture-card:hover .venture-thumbnail img {
-    transform: scale(1.05);
-}
-
-/* WIP ventures use solid brand colors instead of images */
-.venture-thumbnail.blurred img {
     display: none;
-}
-
-.venture-card[data-brand="oshm"] .venture-thumbnail.blurred {
-    background: var(--oshm-brand);
-}
-
-.venture-card[data-brand="brahmalok"] .venture-thumbnail.blurred {
-    background: var(--brahmalok-brand);
 }
 
 /* Venture Content */
@@ -664,11 +635,6 @@ body::before {
     margin-bottom: 25px;
 }
 
-.venture-featured .venture-thumbnail {
-    width: 100px;
-    height: 100px;
-}
-
 .venture-featured .venture-name {
     font-size: 1.4rem;
 }
@@ -701,11 +667,6 @@ body::before {
 
 .venture-wip-card:hover {
     opacity: 1;
-}
-
-.venture-wip-card .venture-thumbnail {
-    width: 60px;
-    height: 60px;
 }
 
 .venture-wip-card .venture-name {
@@ -1641,12 +1602,6 @@ body::before {
         flex-direction: column;
         gap: 15px;
         padding: 15px;
-    }
-
-    .venture-thumbnail,
-    .venture-featured .venture-thumbnail,
-    .venture-wip-card .venture-thumbnail {
-        display: none;
     }
 
     .ventures-wip-grid {
