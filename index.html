@@ -130,6 +130,55 @@
             </div>
         </section>
 
+        <!-- Ventures Section -->
+        <section class="ventures-section">
+            <p class="section-label">Ventures</p>
+
+            <!-- Devalok - Main Focus -->
+            <a href="https://devalok.in" target="_blank" rel="noopener" class="venture-card venture-featured" data-brand="devalok" data-venture="Devalok">
+                <div class="venture-thumbnail">
+                    <img src="/images/ventures/devalok-logo.jpg" alt="Devalok">
+                </div>
+                <div class="venture-content">
+                    <h3 class="venture-name">Devalok</h3>
+                    <p class="venture-explainer">A design agency helping companies with branding, logos, packaging, and websites.</p>
+                    <p class="venture-mission">Creating a generation of world-class designs coming out of Bharat.</p>
+                    <span class="venture-cta">Visit devalok.in →</span>
+                </div>
+            </a>
+
+            <!-- WIP Ventures -->
+            <div class="ventures-wip">
+                <p class="ventures-wip-label">In Development</p>
+
+                <div class="ventures-wip-grid">
+                    <a href="https://oshm.in" target="_blank" rel="noopener" class="venture-card venture-wip-card" data-brand="oshm" data-venture="Oshm">
+                        <div class="venture-thumbnail blurred">
+                            <img src="/images/ventures/oshm-placeholder.svg" alt="Oshm">
+                        </div>
+                        <div class="venture-content">
+                            <h3 class="venture-name">Oshm</h3>
+                            <p class="venture-explainer">Technology infrastructure enabling kirana stores to manage inventory, payments, and delivery.</p>
+                            <p class="venture-mission">Empowering neighborhood stores to thrive in the digital age.</p>
+                            <span class="venture-cta">oshm.in →</span>
+                        </div>
+                    </a>
+
+                    <a href="https://brahmalok.in" target="_blank" rel="noopener" class="venture-card venture-wip-card" data-brand="brahmalok" data-venture="Brahmalok">
+                        <div class="venture-thumbnail blurred">
+                            <img src="/images/ventures/brahmalok-placeholder.svg" alt="Brahmalok">
+                        </div>
+                        <div class="venture-content">
+                            <h3 class="venture-name">Brahmalok</h3>
+                            <p class="venture-explainer">Robotics automation company leasing robots to manufacturing plants.</p>
+                            <p class="venture-mission">Bringing the automation revolution, with ethics at heart.</p>
+                            <span class="venture-cta">brahmalok.in →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section class="contact-section">
             <p class="contact-label">Get in Touch</p>
@@ -161,14 +210,6 @@
         <footer class="footer">
             <p class="footer-office">Office of Mudit Lal</p>
             <p class="footer-location">Lucknow, Bharat (India)</p>
-            
-            <div class="ventures">
-                <a href="https://devalok.in" target="_blank" rel="noopener" class="venture-link">devalok.in</a>
-                <span class="venture-separator">·</span>
-                <a href="https://oshm.in" target="_blank" rel="noopener" class="venture-link">oshm.in</a>
-                <span class="venture-separator">·</span>
-                <a href="https://brahmalok.in" target="_blank" rel="noopener" class="venture-link">brahmalok.in</a>
-            </div>
         </footer>
     </main>
 
@@ -233,12 +274,12 @@
                 });
             });
 
-            // Venture link clicks
-            document.querySelectorAll('.venture-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    const venture = link.textContent.trim();
+            // Venture card clicks
+            document.querySelectorAll('.venture-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const venture = card.getAttribute('data-venture') || 'unknown';
                     gtag('event', 'venture_click', {
-                        'venture': venture
+                        'venture_name': venture
                     });
                 });
             });
