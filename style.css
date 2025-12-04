@@ -499,7 +499,6 @@ body::before {
     padding: 20px;
     background: var(--cream);
     border: 1px solid var(--border-light);
-    border-radius: 8px;
     text-decoration: none;
     color: inherit;
     transition: all 0.3s ease;
@@ -560,7 +559,7 @@ body::before {
     flex-shrink: 0;
     width: 80px;
     height: 80px;
-    border-radius: 6px;
+    border-radius: 3px;
     overflow: hidden;
     background: var(--cream-dark);
 }
