@@ -1,85 +1,183 @@
-# The Office of Mudit Lal - Website Files
+# The Office of Mudit Lal
+
+Official website for Mudit Lal — Founder, Engineer, Strategist.
+
+**Live:** [muditlal.com](https://muditlal.com)
+
+---
+
+## Overview
+
+A minimal, elegant personal website built with vanilla HTML, CSS, and JavaScript. Features a light/dark theme toggle, responsive design, and comprehensive SEO optimization.
+
+### Pages
+
+| Page | URL | Description |
+|------|-----|-------------|
+| Home | `/` | Introduction, ventures, convocation event, social links |
+| About | `/about` | Biography, education, current work, recognition |
+| Press | `/press` | Featured coverage, news mentions, conversations |
+
+---
 
 ## File Structure
 
 ```
-/
-├── index.html          # Homepage
-├── press.html          # Press/Media page (or /press/index.html for clean URLs)
-├── style.css           # Main stylesheet
-├── images/
-│   └── press/
-│       ├── chronicle-mudit-lal.jpg
-│       ├── qs-international-students.jpg
-│       ├── asu-mudit-lal.jpg
-│       └── shoutout-mudit-lal.jpg
+mudit.github.io/
+├── index.html              # Homepage
+├── about.html              # About page
+├── press.html              # Press coverage page
+├── style.css               # Main stylesheet (all pages)
+├── CNAME                   # Custom domain (muditlal.com)
+├── og-image-template.html  # Template for generating OG images
+├── test-livestream.html    # Testing tool for livestream states
+├── README.md
+│
+└── images/
+    ├── og-image.png        # Open Graph image (1200x630)
+    ├── about/
+    │   └── piera-mudit-candid.jpg
+    └── press/
+        ├── asu-mudit-lal.jpg
+        ├── chronicle-mudit-lal.jpg
+        ├── qs-international-students.jpg
+        └── shoutout-mudit-lal.jpg
 ```
 
-## Setup Instructions
+---
 
-### 1. Download & Host Images
+## Features
 
-The press page requires 4 images to be hosted on your server. Download from these URLs and save to `/images/press/`:
+### Design
+- **Minimal aesthetic** with serif typography (Georgia)
+- **Brand colors:** Burgundy (#722F37), Gold (#C9A227), Cream (#FAF8F5)
+- **Light/Dark theme** with system preference detection and manual toggle
+- **Responsive design** for mobile, tablet, and desktop
 
-| File Name | Download From |
-|-----------|---------------|
-| `chronicle-mudit-lal.jpg` | https://chronicle.brightspotcdn.com/dims4/default/d454abe/2147483647/strip/true/crop/5400x3600+0+0/resize/1680x1120!/format/webp/quality/90/?url=http%3A%2F%2Fchronicle-brightspot.s3.us-east-1.amazonaws.com%2F44%2Fba%2F846d59f749f89a961c34baa03196%2Ffischerasu-ponders-1761.jpg |
-| `qs-international-students.jpg` | https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/49580/loic-furhoff-qeiamqp_xqe-unsplash.0de397087dae.jpg |
-| `asu-mudit-lal.jpg` | https://news.asu.edu/sites/g/files/litvpz161/files/styles/block_image_16_9_lge/public/2025-12/20251125%20MuditLalPolyCampus_1801.jpg |
-| `shoutout-mudit-lal.jpg` | https://cdn.shoutoutmiami.com/wp-content/uploads/2025/07/c-1751826335218-personal_1751826334682_1751826334682_mudit_lal_mudit-lal-chat-image.jpg |
+### SEO & Social
+- Open Graph meta tags for rich previews on social platforms
+- Twitter Card support with large image format
+- Canonical URLs for domain consolidation (mdtl.in, mlal.me → muditlal.com)
+- Theme color meta tags for mobile browser UI
 
-### 2. URL Routing
+### Analytics
+- Google Analytics 4 (GA4) integration
+- Custom event tracking for:
+  - Theme toggles
+  - Venture clicks
+  - Press article clicks
+  - Contact clicks
+  - Video card clicks
 
-For clean URLs (e.g., `muditlal.com/press` instead of `muditlal.com/press.html`):
+### Special Features
+- **Convocation Section** (index.html): Time-based display logic for pre-event countdown, livestream link, and post-event message
+- **Venture Cards**: Links to Devalok, Oshm, and upcoming ventures with brand-specific accent colors
 
-**Option A: Rename files**
-- Create folder `/press/`
-- Rename `press.html` to `/press/index.html`
+---
 
-**Option B: Server configuration**
-- If using Apache, add to `.htaccess`:
-  ```
-  RewriteEngine On
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)$ $1.html [L]
-  ```
+## Development
 
-- If using Nginx:
-  ```
-  location / {
-    try_files $uri $uri/ $uri.html =404;
-  }
-  ```
+### Local Development
 
-- If using Netlify/Vercel, this is handled automatically.
+Simply open any HTML file in a browser. No build process required.
 
-### 3. Update Navigation Links
+```bash
+# Clone the repository
+git clone https://github.com/Mudit-Lal/mudit.github.io.git
 
-If using Option A (folder structure), update the nav links in both HTML files:
-- Change `href="/press"` to `href="/press/"` (with trailing slash)
+# Open in browser
+open index.html
+```
 
-### 4. Deployment
+### Deployment
 
-Upload all files to your web server or hosting platform (Netlify, Vercel, GitHub Pages, etc.)
+Hosted on GitHub Pages with custom domain. Push to `master` branch to deploy.
+
+```bash
+git add .
+git commit -m "Your commit message"
+git push origin master
+```
+
+---
 
 ## Customization
 
-### Colors
-All colors are defined as CSS variables in `style.css` under `:root`. Key brand colors:
-- `--burgundy: #722F37` - Primary accent
-- `--gold: #C9A227` - Secondary accent  
-- `--cream: #FAF8F5` - Background
-- `--charcoal: #1a1a1a` - Text
+### Brand Colors
 
-### Adding New Press Items
+All colors are CSS custom properties in `style.css`:
 
-**Featured Coverage (with image):**
-Add a new `.press-card` block in the featured grid.
+```css
+:root {
+    --burgundy: #722F37;    /* Primary accent */
+    --gold: #C9A227;        /* Secondary accent */
+    --cream: #FAF8F5;       /* Light background */
+    --charcoal: #1a1a1a;    /* Dark text/background */
+}
+```
 
-**News Coverage (text only):**
-Add a new `.press-news-item` block in the news list.
+### Adding Press Items
+
+**Featured Coverage** (with image):
+```html
+<a href="URL" target="_blank" rel="noopener" class="press-card">
+    <div class="press-card-cover">
+        <img src="/images/press/filename.jpg" alt="Description">
+        <div class="press-card-overlay"></div>
+        <span class="press-card-credit">Photo: Photographer / Publication</span>
+    </div>
+    <div class="press-card-body">
+        <p class="press-card-publication">Publication Name</p>
+        <h2 class="press-card-headline">Article Headline</h2>
+        <p class="press-card-excerpt">"Pull quote from article"</p>
+        <div class="press-card-meta">
+            <span class="press-card-date">Month Day, Year</span>
+            <span class="press-card-arrow">→</span>
+        </div>
+    </div>
+</a>
+```
+
+**News Coverage** (text only):
+```html
+<a href="URL" target="_blank" rel="noopener" class="press-news-item">
+    <span class="press-news-source">Publication Name</span>
+    <div class="press-news-content">
+        <h3 class="press-news-headline">Article Headline</h3>
+        <p class="press-news-desc">Brief description</p>
+    </div>
+    <span class="press-news-date">Month Day, Year</span>
+</a>
+```
+
+### Generating OG Image
+
+1. Open `og-image-template.html` in Chrome/Edge
+2. Press `F12` → Toggle device toolbar (`Ctrl+Shift+M`)
+3. Set dimensions to `1200 x 630`
+4. Right-click → "Capture screenshot"
+5. Save as `images/og-image.png`
+
+---
+
+## Domain Configuration
+
+| Domain | Purpose |
+|--------|---------|
+| muditlal.com | Primary domain (CNAME) |
+| mdtl.in | Redirect to primary |
+| mlal.me | Redirect to primary |
+
+Canonical URLs point to muditlal.com to consolidate SEO.
+
+---
 
 ## Contact
 
-For questions about this website: office@muditlal.com
+**Website inquiries:** [office@muditlal.com](mailto:office@muditlal.com)
+
+---
+
+## License
+
+All rights reserved. Content and design are proprietary.
