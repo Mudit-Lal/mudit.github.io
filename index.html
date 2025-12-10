@@ -119,13 +119,20 @@
                 <span class="event-timezones">All times: 2:15 PM AZ (MST) | 2:45 AM IST | 4:15 PM EST | 1:15 PM PST</span>
             </div>
 
-            <!-- Livestream - shown 6 hours before event -->
-            <div class="livestream-container" id="livestream" style="display: none;">
-                <p class="livestream-label">Watch Live</p>
-                <div class="livestream-embed">
-                    <iframe src="https://video.ibm.com/embed/982637" allowfullscreen webkitallowfullscreen></iframe>
+            <!-- Livestream CTA - shown 6 hours before event -->
+            <a href="https://video.ibm.com/asutv" target="_blank" rel="noopener" class="livestream-cta" id="livestream" style="display: none;">
+                <div class="livestream-cta-content">
+                    <div class="livestream-play-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                    <div class="livestream-cta-text">
+                        <span class="livestream-cta-label">Live Now</span>
+                        <span class="livestream-cta-action">Watch on ASU TV →</span>
+                    </div>
                 </div>
-            </div>
+            </a>
 
             <!-- Post-event message -->
             <div class="recording-message" id="post-event" style="display: none;">
