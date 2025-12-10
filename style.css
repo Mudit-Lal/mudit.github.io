@@ -411,99 +411,89 @@ body::before {
 
 .event-details {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    margin-bottom: 25px;
-}
-
-.event-date {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--charcoal);
-    margin-bottom: 4px;
-}
-
-.event-location {
     font-size: 14px;
     color: var(--charcoal-light);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    line-height: 1.8;
 }
 
-.event-schedule {
+.event-details strong {
+    color: var(--charcoal);
+    font-weight: 500;
+}
+
+.event-times {
+    margin: 18px 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 8px;
 }
 
-.schedule-item {
+.time-row {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: baseline;
-    gap: 8px 15px;
-    padding: 12px 15px;
-    background: var(--cream-dark);
-    border-left: 3px solid var(--charcoal-light);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-light);
 }
 
-.schedule-item.schedule-highlight {
-    background: rgba(139, 21, 56, 0.08);
-    border-left-color: var(--burgundy);
+.time-row:last-child {
+    border-bottom: none;
 }
 
-.schedule-label {
+.time-row.time-featured {
+    background: rgba(139, 21, 56, 0.04);
+    margin: 0 -12px;
+    padding: 10px 12px;
+    border-bottom: none;
+}
+
+.time-label {
     font-size: 13px;
-    font-weight: 500;
-    color: var(--charcoal);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    min-width: 180px;
+    color: var(--charcoal-light);
 }
 
-.schedule-time {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--charcoal);
-    font-family: Georgia, serif;
-}
-
-.schedule-highlight .schedule-time {
+.time-featured .time-label {
     color: var(--burgundy);
-    font-size: 22px;
+    font-weight: 500;
 }
 
-.schedule-time-alt {
-    font-size: 16px;
-    color: var(--charcoal-light);
-}
-
-.schedule-note {
-    font-size: 12px;
-    color: var(--charcoal-light);
-    font-style: italic;
-    width: 100%;
-    margin-top: 4px;
-}
-
-.event-timezones {
-    padding: 12px 15px;
-    background: var(--cream-dark);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px 10px;
-    align-items: center;
-}
-
-.timezone-label {
-    font-size: 12px;
+.time-value {
+    font-size: 15px;
     font-weight: 500;
     color: var(--charcoal);
-    text-transform: uppercase;
+    text-align: right;
+}
+
+.time-featured .time-value {
+    font-size: 16px;
+    color: var(--burgundy);
+}
+
+.time-alt {
+    font-weight: 400;
+    color: var(--charcoal-light);
+    font-size: 13px;
+}
+
+.event-countdown {
+    font-size: 12px;
+    color: var(--charcoal-light);
+    text-align: center;
+    padding: 10px 0;
     letter-spacing: 0.5px;
 }
 
-.timezone-list {
-    font-size: 15px;
-    color: var(--charcoal);
-    font-weight: 500;
+.event-countdown:empty {
+    display: none;
+}
+
+.timezone-hint {
+    font-size: 11px;
+    color: var(--charcoal-light);
+    opacity: 0.7;
+    text-align: center;
+    margin-top: 5px;
 }
 
 /* Livestream CTA */

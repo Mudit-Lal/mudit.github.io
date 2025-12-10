@@ -109,30 +109,28 @@
             <p class="convocation-subtitle">Convocation Speaker & Impact Award Recipient</p>
             
             <div class="event-details">
-                <div class="event-date">Thursday, December 18, 2025</div>
-                <div class="event-location">Desert Financial Arena, Arizona State University</div>
+                <strong>Thursday, December 18, 2025</strong><br>
+                Desert Financial Arena, Arizona State University
 
-                <div class="event-schedule">
-                    <div class="schedule-item">
-                        <span class="schedule-label">Ceremony Starts</span>
-                        <span class="schedule-time">2:00 PM MST</span>
-                        <span class="schedule-time-alt">2:30 AM IST (Dec 19)</span>
+                <div class="event-times">
+                    <div class="time-row">
+                        <span class="time-label">Ceremony</span>
+                        <span class="time-value">2:00 PM MST <span class="time-alt">/ 2:30 AM IST</span></span>
                     </div>
-                    <div class="schedule-item schedule-highlight">
-                        <span class="schedule-label">My Speech</span>
-                        <span class="schedule-time">2:15 PM MST</span>
-                        <span class="schedule-time-alt">2:45 AM IST</span>
-                        <span class="schedule-note">~15 minutes into ceremony</span>
+                    <div class="time-row time-featured">
+                        <span class="time-label">My Speech</span>
+                        <span class="time-value">2:15 PM MST <span class="time-alt">/ 2:45 AM IST</span></span>
                     </div>
-                    <div class="schedule-item">
-                        <span class="schedule-label">Impact Award & Name Call</span>
-                        <span class="schedule-time">Last 30 minutes</span>
+                    <div class="time-row">
+                        <span class="time-label">Award & Name Call</span>
+                        <span class="time-value">Last 30 min</span>
                     </div>
                 </div>
 
-                <div class="event-timezones">
-                    <span class="timezone-label">Speech time in your zone:</span>
-                    <span class="timezone-list">2:15 PM AZ (MST) · 2:45 AM IST · 4:15 PM EST · 1:15 PM PST</span>
+                <div class="event-countdown" id="countdown"></div>
+
+                <div class="timezone-hint">
+                    Speech: 2:15 PM AZ · 2:45 AM IST · 4:15 PM EST · 1:15 PM PST
                 </div>
             </div>
 
@@ -263,6 +261,36 @@
                 // During event - show livestream
                 document.getElementById('livestream').style.display = 'block';
             }
+        })();
+
+        // Countdown Timer
+        (function() {
+            const eventDate = new Date('2025-12-18T21:00:00Z'); // 2:00 PM MST
+            const countdownEl = document.getElementById('countdown');
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = eventDate - now;
+
+                if (diff <= 0) {
+                    countdownEl.textContent = '';
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+                let text = '';
+                if (days > 0) text += days + 'd ';
+                if (hours > 0 || days > 0) text += hours + 'h ';
+                text += mins + 'm until ceremony';
+
+                countdownEl.textContent = text;
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 60000);
         })();
 
         // Mobile Navigation Toggle
