@@ -1382,24 +1382,7 @@ body::before {
 .press-footer {
     text-align: center;
     padding-top: 2.5rem;
-    border-top: 1px solid var(--border-light);
-}
-
-.press-footer p {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    color: var(--text-muted);
-    margin: 0;
-}
-
-.press-footer a {
-    color: var(--burgundy);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.press-footer a:hover {
-    text-decoration: underline;
+    border-top: 1px solid rgba(201, 162, 39, 0.2);
 }
 
 
@@ -1578,26 +1561,9 @@ body::before {
     text-align: center;
     padding-top: 3rem;
     margin-top: 3rem;
-    border-top: 1px solid var(--border-light);
+    border-top: 1px solid rgba(201, 162, 39, 0.2);
     opacity: 0;
     animation: fadeInUp 0.6s ease 0.6s forwards;
-}
-
-.about-footer p {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    color: var(--text-muted);
-    margin: 0;
-}
-
-.about-footer a {
-    color: var(--burgundy);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.about-footer a:hover {
-    text-decoration: underline;
 }
 
 
