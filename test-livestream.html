@@ -120,7 +120,7 @@
                 <strong>Thursday, December 18, 2025</strong><br>
                 Desert Financial Arena, Arizona State University
 
-                <div class="event-times">
+                <div class="event-times" id="event-times">
                     <div class="time-row">
                         <span class="time-label">Ceremony</span>
                         <span class="time-value">2:00 PM MST <span class="time-alt">/ 2:30 AM IST</span></span>
@@ -137,7 +137,7 @@
 
                 <div class="event-countdown" id="countdown">8d 14h 32m until ceremony</div>
 
-                <div class="timezone-hint">
+                <div class="timezone-hint" id="timezone-hint">
                     Speech: 2:15 PM AZ · 2:45 AM IST · 4:15 PM EST · 1:15 PM PST
                 </div>
             </div>
@@ -183,12 +183,18 @@
         function showState(state) {
             const livestream = document.getElementById('livestream');
             const postEvent = document.getElementById('post-event');
+            const eventTimes = document.getElementById('event-times');
+            const countdown = document.getElementById('countdown');
+            const timezoneHint = document.getElementById('timezone-hint');
             const currentStateEl = document.getElementById('currentState');
             const buttons = document.querySelectorAll('.test-btn');
 
             // Reset all
             livestream.style.display = 'none';
             postEvent.style.display = 'none';
+            eventTimes.style.display = 'flex';
+            countdown.style.display = 'block';
+            timezoneHint.style.display = 'block';
             buttons.forEach(btn => btn.classList.remove('active'));
 
             // Show selected state
@@ -201,6 +207,9 @@
                 buttons[1].classList.add('active');
             } else if (state === 'post') {
                 postEvent.style.display = 'block';
+                eventTimes.style.display = 'none';
+                countdown.style.display = 'none';
+                timezoneHint.style.display = 'none';
                 currentStateEl.textContent = 'Post-Event';
                 buttons[2].classList.add('active');
             }

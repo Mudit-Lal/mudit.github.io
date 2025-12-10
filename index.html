@@ -112,7 +112,7 @@
                 <strong>Thursday, December 18, 2025</strong><br>
                 Desert Financial Arena, Arizona State University
 
-                <div class="event-times">
+                <div class="event-times" id="event-times">
                     <div class="time-row">
                         <span class="time-label">Ceremony</span>
                         <span class="time-value">2:00 PM MST <span class="time-alt">/ 2:30 AM IST</span></span>
@@ -129,7 +129,7 @@
 
                 <div class="event-countdown" id="countdown"></div>
 
-                <div class="timezone-hint">
+                <div class="timezone-hint" id="timezone-hint">
                     Speech: 2:15 PM AZ · 2:45 AM IST · 4:15 PM EST · 1:15 PM PST
                 </div>
             </div>
@@ -255,8 +255,11 @@
             const now = new Date();
 
             if (now >= hideTime) {
-                // After event - show recording message
+                // After event - show recording message, hide event details
                 document.getElementById('post-event').style.display = 'block';
+                document.getElementById('event-times').style.display = 'none';
+                document.getElementById('countdown').style.display = 'none';
+                document.getElementById('timezone-hint').style.display = 'none';
             } else if (now >= showTime) {
                 // During event - show livestream
                 document.getElementById('livestream').style.display = 'block';
