@@ -116,7 +116,7 @@
             <h2 class="convocation-title">Fall 2025 Fulton Engineering Convocation</h2>
             <p class="convocation-subtitle">Convocation Speaker & Impact Award Recipient</p>
 
-            <div class="event-details">
+            <div class="event-details" id="event-details">
                 <strong>Thursday, December 18, 2025</strong><br>
                 Desert Financial Arena, Arizona State University
 
@@ -162,7 +162,7 @@
                 <p>The ceremony has ended. Recording will be shared on my social media platforms.</p>
             </div>
 
-            <div class="cta-buttons">
+            <div class="cta-buttons" id="cta-buttons">
                 <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mudit+Lal%27s+Graduation+Ceremony&dates=20251218T210000Z%2F20251219T000000Z&details=Graduation+ceremony+for+Mudit+Lal%0ADate%3A+December+18%2C+2025%0ATime%3A+2%3A00+PM+%28MST%29%0ALocation%3A+Desert+Financial+Arena%0A%0ALivestream+Link%3A+https%3A%2F%2Fgraduation.asu.edu%2Fceremonies%2Fschedule&location=Desert+Financial+Arena&sf=true&output=xml&ctz=America%2FPhoenix" target="_blank" rel="noopener" class="cta-button cta-primary">
                     <svg class="cta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/>
@@ -183,18 +183,16 @@
         function showState(state) {
             const livestream = document.getElementById('livestream');
             const postEvent = document.getElementById('post-event');
-            const eventTimes = document.getElementById('event-times');
-            const countdown = document.getElementById('countdown');
-            const timezoneHint = document.getElementById('timezone-hint');
+            const eventDetails = document.getElementById('event-details');
+            const ctaButtons = document.getElementById('cta-buttons');
             const currentStateEl = document.getElementById('currentState');
             const buttons = document.querySelectorAll('.test-btn');
 
             // Reset all
             livestream.style.display = 'none';
             postEvent.style.display = 'none';
-            eventTimes.style.display = 'flex';
-            countdown.style.display = 'block';
-            timezoneHint.style.display = 'block';
+            eventDetails.style.display = 'block';
+            ctaButtons.style.display = 'flex';
             buttons.forEach(btn => btn.classList.remove('active'));
 
             // Show selected state
@@ -203,13 +201,13 @@
                 buttons[0].classList.add('active');
             } else if (state === 'during') {
                 livestream.style.display = 'block';
+                eventDetails.style.display = 'none';
                 currentStateEl.textContent = 'During Event';
                 buttons[1].classList.add('active');
             } else if (state === 'post') {
                 postEvent.style.display = 'block';
-                eventTimes.style.display = 'none';
-                countdown.style.display = 'none';
-                timezoneHint.style.display = 'none';
+                eventDetails.style.display = 'none';
+                ctaButtons.style.display = 'none';
                 currentStateEl.textContent = 'Post-Event';
                 buttons[2].classList.add('active');
             }
