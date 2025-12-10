@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OG Image Template - Screenshot at 1200x630</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1200px;
+            height: 630px;
+            overflow: hidden;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .og-container {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #FAF8F5 0%, #F5F0E8 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+        }
+
+        /* Subtle background texture */
+        .og-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(114, 47, 55, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(201, 162, 39, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Gold accent line at top */
+        .gold-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C9A227 0%, #D4AF37 50%, #C9A227 100%);
+        }
+
+        /* Decorative corner elements */
+        .corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 1px solid rgba(201, 162, 39, 0.3);
+        }
+
+        .corner-tl {
+            top: 40px;
+            left: 40px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-tr {
+            top: 40px;
+            right: 40px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-bl {
+            bottom: 40px;
+            left: 40px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-br {
+            bottom: 40px;
+            right: 40px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* Content */
+        .content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .star {
+            font-size: 28px;
+            color: #C9A227;
+            letter-spacing: 20px;
+            margin-bottom: 30px;
+        }
+
+        .office-label {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #722F37;
+            margin-bottom: 15px;
+        }
+
+        .name {
+            font-size: 72px;
+            font-weight: 400;
+            color: #1a1a1a;
+            letter-spacing: 6px;
+            margin-bottom: 25px;
+        }
+
+        .tagline {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #6b6b6b;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #C9A227 0%, #D4AF37 50%, #C9A227 100%);
+            margin: 0 auto 50px;
+        }
+
+        .url {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: #722F37;
+            text-transform: lowercase;
+        }
+
+        /* Bottom branding */
+        .bottom-brand {
+            position: absolute;
+            bottom: 50px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        .bottom-brand span {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #C9A227;
+        }
+
+        /* Instructions - won't appear in screenshot */
+        .instructions {
+            position: fixed;
+            top: 650px;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 14px;
+        }
+
+        .instructions h3 {
+            margin-bottom: 10px;
+        }
+
+        .instructions code {
+            background: #555;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="og-container">
+        <div class="gold-line"></div>
+
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+
+        <div class="content">
+            <div class="star">✦</div>
+            <p class="office-label">The Office of</p>
+            <h1 class="name">MUDIT LAL</h1>
+            <p class="tagline">Founder · Engineer · Strategist</p>
+            <div class="divider"></div>
+            <p class="url">muditlal.com</p>
+        </div>
+
+        <div class="bottom-brand">
+            <span>Lucknow, Bharat</span>
+        </div>
+    </div>
+
+    <div class="instructions">
+        <h3>Screenshot Instructions:</h3>
+        <p>1. Open this file in Chrome/Edge</p>
+        <p>2. Press <code>F12</code> to open DevTools</p>
+        <p>3. Click the "Toggle device toolbar" icon (or press <code>Ctrl+Shift+M</code>)</p>
+        <p>4. Set dimensions to <code>1200 x 630</code></p>
+        <p>5. Right-click the page → "Capture screenshot" or use <code>Ctrl+Shift+P</code> → type "screenshot"</p>
+        <p>6. Save as <code>/images/og-image.jpg</code> (or .png)</p>
+    </div>
+</body>
+</html>
