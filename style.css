@@ -731,11 +731,6 @@ body::before {
     background: linear-gradient(135deg, rgba(26, 107, 124, 0.03) 0%, var(--cream) 100%);
 }
 
-/* Venture Thumbnail - Hidden */
-.venture-thumbnail {
-    display: none;
-}
-
 /* Venture Content */
 .venture-content {
     flex: 1;
@@ -979,33 +974,6 @@ body::before {
 
 .footer-contact a:hover {
     color: var(--gold);
-}
-
-.ventures {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px 20px;
-}
-
-.venture-link {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 11px;
-    color: var(--burgundy);
-    text-decoration: none;
-    letter-spacing: 1px;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-}
-
-.venture-link:hover {
-    opacity: 1;
-}
-
-.venture-separator {
-    color: var(--gold-pale);
-    font-size: 10px;
 }
 
 
@@ -1792,15 +1760,6 @@ body::before {
 
     .venture-wip-card .venture-name {
         font-size: 0.95rem;
-    }
-
-    .ventures {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .venture-separator {
-        display: none;
     }
 
     /* Press Page */
