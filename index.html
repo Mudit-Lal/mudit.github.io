@@ -101,8 +101,6 @@
     </nav>
 
     <main class="container">
-        <!-- Gold Accent Line -->
-        <div class="gold-line"></div>
 
         <!-- Decorative Star -->
         <div class="decorative-star">✦</div>
@@ -267,25 +265,52 @@
     </main>
 
     <script>
-        // Livestream State Management
+        // Livestream State Management (with auto-update)
         (function() {
             // Event: Dec 18, 2025 2:00 PM MST (UTC-7) = Dec 18, 2025 21:00 UTC
             // Show livestream 6 hours before = Dec 18, 2025 15:00 UTC (8:00 AM MST)
             // Hide after event ends = Dec 19, 2025 00:00 UTC (5:00 PM MST)
             const showTime = new Date('2025-12-18T15:00:00Z');
             const hideTime = new Date('2025-12-19T00:00:00Z');
-            const now = new Date();
 
-            if (now >= hideTime) {
-                // After event - show recording message, hide everything else
-                document.getElementById('post-event').style.display = 'block';
-                document.getElementById('event-details').style.display = 'none';
-                document.getElementById('cta-buttons').style.display = 'none';
-            } else if (now >= showTime) {
-                // During event - show livestream only
-                document.getElementById('livestream').style.display = 'block';
-                document.getElementById('event-details').style.display = 'none';
-                document.getElementById('cta-buttons').style.display = 'none';
+            function updateState() {
+                const now = new Date();
+                const livestream = document.getElementById('livestream');
+                const postEvent = document.getElementById('post-event');
+                const eventDetails = document.getElementById('event-details');
+                const ctaButtons = document.getElementById('cta-buttons');
+
+                if (now >= hideTime) {
+                    // After event - show recording message, hide everything else
+                    postEvent.style.display = 'block';
+                    livestream.style.display = 'none';
+                    eventDetails.style.display = 'none';
+                    ctaButtons.style.display = 'none';
+                } else if (now >= showTime) {
+                    // During event - show livestream only
+                    livestream.style.display = 'block';
+                    postEvent.style.display = 'none';
+                    eventDetails.style.display = 'none';
+                    ctaButtons.style.display = 'none';
+                } else {
+                    // Pre-event - show details and CTA buttons
+                    eventDetails.style.display = 'block';
+                    ctaButtons.style.display = 'flex';
+                    livestream.style.display = 'none';
+                    postEvent.style.display = 'none';
+                }
+            }
+
+            // Set initial state
+            updateState();
+
+            // Schedule automatic transitions at exact times
+            const now = new Date();
+            if (now < showTime) {
+                setTimeout(updateState, showTime - now);
+            }
+            if (now < hideTime) {
+                setTimeout(updateState, hideTime - now);
             }
         })();
 
