@@ -260,9 +260,10 @@
                 document.getElementById('event-details').style.display = 'none';
                 document.getElementById('cta-buttons').style.display = 'none';
             } else if (now >= showTime) {
-                // During event - show livestream, hide event details
+                // During event - show livestream only
                 document.getElementById('livestream').style.display = 'block';
                 document.getElementById('event-details').style.display = 'none';
+                document.getElementById('cta-buttons').style.display = 'none';
             }
         })();
 
