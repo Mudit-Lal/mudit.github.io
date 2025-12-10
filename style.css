@@ -411,26 +411,99 @@ body::before {
 
 .event-details {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    color: var(--charcoal-light);
     margin-bottom: 25px;
-    line-height: 1.9;
 }
 
-.event-details strong {
+.event-date {
+    font-size: 18px;
+    font-weight: 600;
     color: var(--charcoal);
-    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.event-location {
+    font-size: 14px;
+    color: var(--charcoal-light);
+    margin-bottom: 20px;
 }
 
 .event-schedule {
-    display: block;
-    line-height: 1.8;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.schedule-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 15px;
+    padding: 12px 15px;
+    background: var(--cream-dark);
+    border-left: 3px solid var(--charcoal-light);
+}
+
+.schedule-item.schedule-highlight {
+    background: rgba(139, 21, 56, 0.08);
+    border-left-color: var(--burgundy);
+}
+
+.schedule-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--charcoal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 180px;
+}
+
+.schedule-time {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--charcoal);
+    font-family: Georgia, serif;
+}
+
+.schedule-highlight .schedule-time {
+    color: var(--burgundy);
+    font-size: 22px;
+}
+
+.schedule-time-alt {
+    font-size: 16px;
+    color: var(--charcoal-light);
+}
+
+.schedule-note {
+    font-size: 12px;
+    color: var(--charcoal-light);
+    font-style: italic;
+    width: 100%;
+    margin-top: 4px;
 }
 
 .event-timezones {
-    font-size: 11px;
-    color: var(--charcoal-light);
-    opacity: 0.8;
+    padding: 12px 15px;
+    background: var(--cream-dark);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 10px;
+    align-items: center;
+}
+
+.timezone-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--charcoal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.timezone-list {
+    font-size: 15px;
+    color: var(--charcoal);
+    font-weight: 500;
 }
 
 /* Livestream CTA */
