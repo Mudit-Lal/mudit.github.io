@@ -422,6 +422,61 @@ body::before {
     font-weight: 500;
 }
 
+.event-schedule {
+    display: block;
+    line-height: 1.8;
+}
+
+.event-timezones {
+    font-size: 11px;
+    color: var(--charcoal-light);
+    opacity: 0.8;
+}
+
+/* Livestream Embed */
+.livestream-container {
+    margin: 25px 0;
+}
+
+.livestream-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--burgundy);
+    margin-bottom: 12px;
+}
+
+.livestream-embed {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    background: #000;
+}
+
+.livestream-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Post-event message */
+.recording-message {
+    margin: 20px 0;
+    padding: 15px 20px;
+    background: var(--cream-dark);
+    border-left: 3px solid var(--burgundy);
+    font-size: 14px;
+    color: var(--charcoal);
+}
+
+.recording-message p {
+    margin: 0;
+}
+
 .cta-buttons {
     display: flex;
     flex-wrap: wrap;

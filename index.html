@@ -110,8 +110,26 @@
             
             <div class="event-details">
                 <strong>Thursday, December 18, 2025</strong><br>
-                2:00 PM (MST) | 2:30 AM (IST - 19 Dec)<br>
-                Desert Financial Arena, Arizona State University
+                Desert Financial Arena, Arizona State University<br><br>
+                <span class="event-schedule">
+                    Ceremony: 2:00 PM MST | 2:30 AM IST (Dec 19)<br>
+                    Speech: ~15 minutes in (2:15 PM MST | 2:45 AM IST)<br>
+                    Impact Award & Name Call: Last 30 minutes
+                </span><br><br>
+                <span class="event-timezones">All times: 2:15 PM AZ (MST) | 2:45 AM IST | 4:15 PM EST | 1:15 PM PST</span>
+            </div>
+
+            <!-- Livestream - shown 6 hours before event -->
+            <div class="livestream-container" id="livestream" style="display: none;">
+                <p class="livestream-label">Watch Live</p>
+                <div class="livestream-embed">
+                    <iframe src="https://video.ibm.com/embed/982637" allowfullscreen webkitallowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Post-event message -->
+            <div class="recording-message" id="post-event" style="display: none;">
+                <p>The ceremony has ended. Recording will be shared on my social media platforms.</p>
             </div>
 
             <div class="cta-buttons">
@@ -121,11 +139,11 @@
                     </svg>
                     Add to Calendar
                 </a>
-                <a href="https://grad.tassel.com/announcement/e64e9b8da" target="_blank" rel="noopener" class="cta-button cta-secondary">
+                <a href="https://video.ibm.com/asutv" target="_blank" rel="noopener" class="cta-button cta-secondary">
                     <svg class="cta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                        <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12zM9 8l7 4-7 4V8z"/>
                     </svg>
-                    View Details
+                    Watch on ASU TV
                 </a>
             </div>
         </section>
@@ -205,6 +223,24 @@
     </main>
 
     <script>
+        // Livestream State Management
+        (function() {
+            // Event: Dec 18, 2025 2:00 PM MST (UTC-7) = Dec 18, 2025 21:00 UTC
+            // Show livestream 6 hours before = Dec 18, 2025 15:00 UTC (8:00 AM MST)
+            // Hide after event ends = Dec 19, 2025 00:00 UTC (5:00 PM MST)
+            const showTime = new Date('2025-12-18T15:00:00Z');
+            const hideTime = new Date('2025-12-19T00:00:00Z');
+            const now = new Date();
+
+            if (now >= hideTime) {
+                // After event - show recording message
+                document.getElementById('post-event').style.display = 'block';
+            } else if (now >= showTime) {
+                // During event - show livestream
+                document.getElementById('livestream').style.display = 'block';
+            }
+        })();
+
         // Mobile Navigation Toggle
         function toggleNav() {
             document.getElementById('navLinks').classList.toggle('active');
