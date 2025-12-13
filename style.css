@@ -651,6 +651,27 @@ body::before {
     fill: currentColor;
 }
 
+/* Reminder button active state */
+.cta-button.reminder-active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--charcoal);
+}
+
+.cta-button.reminder-active:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+}
+
+.home-reminder-status {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 10px;
+    min-height: 18px;
+}
+
 /* ===== Ventures Section ===== */
 .ventures-section {
     margin-bottom: 50px;
@@ -1564,6 +1585,523 @@ body::before {
     border-top: 1px solid rgba(201, 162, 39, 0.2);
     opacity: 0;
     animation: fadeInUp 0.6s ease 0.6s forwards;
+}
+
+
+/* =====================================================
+   LIVE PAGE STYLES
+   ===================================================== */
+
+.live-page {
+    min-height: 100vh;
+}
+
+.live-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 120px 40px 60px;
+    min-height: 100vh;
+}
+
+/* Live Hero Section */
+.live-hero {
+    text-align: center;
+    margin-bottom: 60px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.live-label {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.live-title {
+    font-family: Georgia, serif;
+    font-size: clamp(24px, 5vw, 32px);
+    font-weight: 400;
+    color: var(--charcoal);
+    letter-spacing: 1px;
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+}
+
+.live-subtitle {
+    font-size: 15px;
+    color: var(--burgundy);
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+/* Event Info Box */
+.live-event-box {
+    background: var(--cream-dark);
+    border: 1px solid var(--border-light);
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.live-date,
+.live-time-local {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: var(--charcoal);
+}
+
+.live-date {
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.live-time-local {
+    flex-wrap: wrap;
+}
+
+.live-icon {
+    width: 18px;
+    height: 18px;
+    fill: var(--burgundy);
+    flex-shrink: 0;
+}
+
+.live-timezone-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: auto;
+}
+
+/* Countdown */
+.live-countdown {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+}
+
+.countdown-value {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--burgundy);
+    min-width: 40px;
+}
+
+.countdown-label {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-right: 15px;
+}
+
+/* CTA Group */
+.live-cta-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.live-remind-btn,
+.live-calendar-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 24px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--burgundy);
+}
+
+.live-remind-btn {
+    background: var(--burgundy);
+    color: #fff;
+}
+
+.live-remind-btn:hover {
+    background: var(--burgundy-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(114, 47, 55, 0.25);
+}
+
+.live-remind-btn.reminder-active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--charcoal);
+}
+
+.live-remind-btn .live-icon {
+    fill: currentColor;
+}
+
+.live-calendar-btn {
+    background: transparent;
+    color: var(--burgundy);
+}
+
+.live-calendar-btn:hover {
+    background: var(--burgundy);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.live-calendar-btn .live-icon {
+    fill: currentColor;
+}
+
+.live-reminder-status {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    min-height: 18px;
+}
+
+/* LIVE NOW State */
+.live-now-state .live-title {
+    margin-top: 20px;
+}
+
+.live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: #1a1a1a;
+    color: #ff4444;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.live-dot {
+    width: 10px;
+    height: 10px;
+    background: #ff4444;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+.live-watch-btn {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 25px 30px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.live-watch-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.live-watch-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--burgundy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.live-watch-btn:hover .live-watch-icon {
+    transform: scale(1.1);
+    background: #a01030;
+}
+
+.live-watch-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+    margin-left: 3px;
+}
+
+.live-watch-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+}
+
+.live-watch-label {
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.live-watch-note {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.5px;
+}
+
+.live-speech-time {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* POST-EVENT State */
+.live-post-state .live-title {
+    margin-bottom: 20px;
+}
+
+.live-post-message {
+    font-size: 16px;
+    color: var(--charcoal-light);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.live-linkedin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--burgundy);
+    color: #fff;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    border: 1px solid var(--burgundy);
+}
+
+.live-linkedin-btn:hover {
+    background: var(--burgundy-dark);
+    border-color: var(--burgundy-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(114, 47, 55, 0.3);
+}
+
+.live-linkedin-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+.live-home-link {
+    display: block;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--burgundy);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.live-home-link:hover {
+    color: var(--gold);
+}
+
+/* While You Wait / Explore Section */
+.live-explore {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-light);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.3s forwards;
+}
+
+.live-explore-label {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.live-explore-intro {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    color: var(--charcoal-light);
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0 auto 30px;
+}
+
+.live-venture-card {
+    display: block;
+    max-width: 450px;
+    margin: 0 auto 25px;
+    padding: 20px 25px;
+    background: var(--cream);
+    border: 1px solid var(--border-light);
+    text-decoration: none;
+    text-align: left;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.live-venture-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--devalok-brand);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.live-venture-card:hover::before {
+    opacity: 1;
+}
+
+.live-venture-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--devalok-brand);
+    box-shadow: 0 8px 20px var(--shadow);
+}
+
+.live-venture-name {
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin: 0 0 6px 0;
+    transition: color 0.3s ease;
+}
+
+.live-venture-card:hover .live-venture-name {
+    color: var(--devalok-brand);
+}
+
+.live-venture-desc {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0 0 10px 0;
+    line-height: 1.5;
+}
+
+.live-venture-cta {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--devalok-brand);
+}
+
+.live-explore-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.live-explore-link {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--burgundy);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.live-explore-link:hover {
+    color: var(--gold);
+}
+
+.live-explore-divider {
+    color: var(--border-light);
+}
+
+/* Live Footer */
+.live-footer {
+    text-align: center;
+    padding-top: 40px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(201, 162, 39, 0.2);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.5s forwards;
+}
+
+/* Live Page Responsive */
+@media (max-width: 768px) {
+    .live-container {
+        padding: 100px 25px 40px;
+    }
+
+    .live-event-box {
+        padding: 20px;
+    }
+
+    .live-timezone-note {
+        width: 100%;
+        margin-left: 30px;
+        margin-top: 5px;
+    }
+
+    .live-cta-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .live-remind-btn,
+    .live-calendar-btn {
+        justify-content: center;
+    }
+
+    .live-watch-btn {
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .live-watch-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .live-watch-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .live-explore-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .live-explore-divider {
+        display: none;
+    }
 }
 
 
