@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Preview | The Office of Mudit Lal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+
+    <style>
+        /* =====================================================
+           DESIGN TEST PAGE STYLES
+           ===================================================== */
+
+        .design-test-page {
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+
+        .design-test-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px 60px;
+        }
+
+        .design-test-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .design-test-title {
+            font-family: Georgia, serif;
+            font-size: 2rem;
+            color: var(--charcoal);
+            margin-bottom: 10px;
+        }
+
+        .design-test-subtitle {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .design-section {
+            margin-bottom: 80px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .design-section:last-child {
+            border-bottom: none;
+        }
+
+        .design-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .design-section-label {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .design-section-title {
+            font-family: Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            margin: 5px 0;
+        }
+
+        .design-section-desc {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .design-preview-box {
+            background: var(--cream-dark);
+            border: 1px solid var(--border-light);
+            padding: 40px;
+        }
+
+        /* =====================================================
+           DEVALOK PULSATING ANIMATION (NEW) - Very slow & subtle
+           ===================================================== */
+
+        @keyframes devalokGlow {
+            0%, 100% {
+                box-shadow: 0 4px 12px rgba(232, 121, 153, 0.08);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(232, 121, 153, 0.2),
+                            0 0 35px rgba(232, 121, 153, 0.08);
+            }
+        }
+
+        .venture-card-new.venture-featured[data-brand="devalok"] {
+            animation: devalokGlow 8s ease-in-out infinite;
+        }
+
+        .venture-card-new.venture-featured[data-brand="devalok"]:hover {
+            animation-play-state: paused;
+        }
+
+        /* New venture card styles for preview */
+        .venture-card-new {
+            display: block;
+            padding: 25px 30px;
+            background: var(--cream);
+            border: 1px solid var(--border-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .venture-card-new::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--devalok-brand);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .venture-card-new:hover::before {
+            opacity: 1;
+        }
+
+        .venture-card-new:hover {
+            transform: translateY(-3px);
+            border-color: var(--devalok-brand);
+        }
+
+        .venture-card-new .venture-name {
+            font-family: Georgia, serif;
+            font-size: 1.3rem;
+            color: var(--charcoal);
+            margin: 0 0 8px 0;
+            transition: color 0.3s ease;
+        }
+
+        .venture-card-new:hover .venture-name {
+            color: var(--devalok-brand);
+        }
+
+        .venture-card-new .venture-explainer {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0 0 8px 0;
+            line-height: 1.6;
+        }
+
+        .venture-card-new .venture-mission {
+            font-family: Georgia, serif;
+            font-size: 13px;
+            font-style: italic;
+            color: var(--burgundy);
+            margin: 0 0 12px 0;
+        }
+
+        .venture-card-new .venture-cta {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--devalok-brand);
+        }
+
+        /* =====================================================
+           "WHILE YOU WAIT" SECTION - 2 COLUMN LAYOUT (NEW)
+           ===================================================== */
+
+        .explore-new {
+            text-align: left;
+        }
+
+        .explore-new-label {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .explore-bio-section {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 30px;
+            align-items: start;
+            margin-bottom: 30px;
+        }
+
+        .explore-photo {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 1px solid var(--border-light);
+        }
+
+        .explore-bio-text {
+            font-family: Georgia, serif;
+            font-size: 16px;
+            color: var(--charcoal-light);
+            line-height: 1.7;
+        }
+
+        .explore-bio-text p {
+            margin: 0 0 15px 0;
+        }
+
+        .explore-bio-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .explore-divider {
+            height: 1px;
+            background: var(--border-light);
+            margin: 30px 0;
+        }
+
+        .explore-venture-card {
+            display: block;
+            padding: 20px 25px;
+            background: var(--cream);
+            border: 1px solid var(--border-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            margin-bottom: 25px;
+            animation: devalokGlow 8s ease-in-out infinite;
+        }
+
+        .explore-venture-card:hover {
+            animation-play-state: paused;
+            transform: translateY(-3px);
+            border-color: var(--devalok-brand);
+        }
+
+        .explore-venture-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--devalok-brand);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .explore-venture-card:hover::before {
+            opacity: 1;
+        }
+
+        .explore-venture-name {
+            font-family: Georgia, serif;
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            margin: 0 0 6px 0;
+            transition: color 0.3s ease;
+        }
+
+        .explore-venture-card:hover .explore-venture-name {
+            color: var(--devalok-brand);
+        }
+
+        .explore-venture-desc {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0 0 10px 0;
+            line-height: 1.5;
+        }
+
+        .explore-venture-cta {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--devalok-brand);
+        }
+
+        .explore-links-new {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .explore-link-new {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: var(--burgundy);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .explore-link-new:hover {
+            color: var(--gold);
+        }
+
+        .explore-links-divider {
+            color: var(--border-light);
+        }
+
+        @media (max-width: 768px) {
+            .explore-bio-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .explore-photo {
+                margin: 0 auto;
+            }
+
+            .explore-links-new {
+                justify-content: center;
+            }
+        }
+
+        /* =====================================================
+           ABOUT BIO SECTIONS - 2 COLUMN GRID (NEW)
+           ===================================================== */
+
+        .bio-grid-new {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .bio-grid-new .bio-section-new:last-child {
+            grid-column: 1 / -1;
+        }
+
+        .bio-section-new {
+            background: var(--cream);
+            border: 1px solid var(--border-light);
+            padding: 25px 30px;
+        }
+
+        .bio-section-new .bio-heading {
+            font-family: Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--charcoal);
+            margin: 0 0 12px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .bio-section-new .bio-text {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .bio-section-new .bio-text a {
+            color: var(--burgundy);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .bio-section-new .bio-text a:hover {
+            color: var(--gold);
+        }
+
+        @media (max-width: 768px) {
+            .bio-grid-new {
+                grid-template-columns: 1fr;
+            }
+
+            .bio-grid-new .bio-section-new:last-child {
+                grid-column: 1;
+            }
+        }
+
+        /* =====================================================
+           SPEAKING SECTION (NEW)
+           ===================================================== */
+
+        .speaking-section {
+            margin-bottom: 40px;
+        }
+
+        .speaking-card {
+            display: block;
+            background: var(--cream);
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .speaking-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--burgundy);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        .speaking-card-content {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 0;
+        }
+
+        .speaking-card-image {
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+            object-fit: cover;
+        }
+
+        .speaking-card-body {
+            padding: 25px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .speaking-card-type {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--burgundy);
+            margin-bottom: 8px;
+        }
+
+        .speaking-card-title {
+            font-family: Georgia, serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--charcoal);
+            margin: 0 0 10px 0;
+            line-height: 1.3;
+        }
+
+        .speaking-card-desc {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0 0 15px 0;
+        }
+
+        .speaking-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .speaking-card-date {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .speaking-card-cta {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--burgundy);
+        }
+
+        @media (max-width: 768px) {
+            .speaking-card-content {
+                grid-template-columns: 1fr;
+            }
+
+            .speaking-card-image {
+                height: 200px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="/" class="nav-brand">
+            <span class="nav-brand-label">The Office of</span>
+            <span class="nav-brand-name">Mudit Lal</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="/about" class="nav-link">About</a></li>
+            <li><a href="/press" class="nav-link">Recognition</a></li>
+            <li><a href="mailto:office@muditlal.com" class="nav-link">Contact</a></li>
+        </ul>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <svg class="moon-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main class="design-test-page">
+        <div class="design-test-container">
+
+            <!-- Header -->
+            <header class="design-test-header">
+                <h1 class="design-test-title">Design Preview</h1>
+                <p class="design-test-subtitle">Multi-column layouts and new components for review</p>
+            </header>
+
+            <!-- Section 1: Devalok Animation -->
+            <section class="design-section">
+                <div class="design-section-header">
+                    <div>
+                        <p class="design-section-label">Component</p>
+                        <h2 class="design-section-title">Devalok Card with Pulsating Animation</h2>
+                        <p class="design-section-desc">Subtle pink glow that pulses every 8 seconds, pauses on hover</p>
+                    </div>
+                </div>
+
+                <div class="design-preview-box">
+                    <a href="https://devalok.in" target="_blank" rel="noopener" class="venture-card-new venture-featured" data-brand="devalok">
+                        <div class="venture-content">
+                            <h3 class="venture-name">Devalok</h3>
+                            <p class="venture-explainer">A design and strategy studio for branding, websites, and apps—powered by a vendor network to bring ideas to life.</p>
+                            <p class="venture-mission">Creating a generation of world-class designs coming out of Bharat.</p>
+                            <span class="venture-cta">Visit devalok.in →</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Section 2: While You Wait -->
+            <section class="design-section">
+                <div class="design-section-header">
+                    <div>
+                        <p class="design-section-label">Live Page</p>
+                        <h2 class="design-section-title">"While You Wait" Section</h2>
+                        <p class="design-section-desc">Photo + bio side-by-side, then Devalok card below with divider</p>
+                    </div>
+                </div>
+
+                <div class="design-preview-box">
+                    <section class="explore-new">
+                        <p class="explore-new-label">While You Wait</p>
+
+                        <!-- Photo + Bio -->
+                        <div class="explore-bio-section">
+                            <img src="/images/about/piera-mudit-candid.jpg" alt="Mudit Lal" class="explore-photo">
+                            <div class="explore-bio-text">
+                                <p>I'm Mudit Lal, a founder, engineer, and strategist from Lucknow, Bharat. I build ventures that serve communities across India.</p>
+                                <p>Whether through design, technology, or institution-building, my focus remains the same: contributing to the places and people that shaped me.</p>
+                            </div>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="explore-divider"></div>
+
+                        <!-- Devalok Card -->
+                        <a href="https://devalok.in" target="_blank" rel="noopener" class="explore-venture-card" data-brand="devalok">
+                            <div class="explore-venture-content">
+                                <h3 class="explore-venture-name">Devalok</h3>
+                                <p class="explore-venture-desc">A design and strategy studio for branding, websites, and apps—powered by a vendor network to bring ideas to life.</p>
+                                <span class="explore-venture-cta">Visit devalok.in →</span>
+                            </div>
+                        </a>
+
+                        <!-- Links -->
+                        <div class="explore-links-new">
+                            <a href="/about" class="explore-link-new">Learn more about me</a>
+                            <span class="explore-links-divider">|</span>
+                            <a href="/press" class="explore-link-new">See recognition & press</a>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            <!-- Section 3: About Bio Grid -->
+            <section class="design-section">
+                <div class="design-section-header">
+                    <div>
+                        <p class="design-section-label">About Page</p>
+                        <h2 class="design-section-title">Bio Sections in 2-Column Grid</h2>
+                        <p class="design-section-desc">First 4 sections in grid, Recognition spans full width</p>
+                    </div>
+                </div>
+
+                <div class="design-preview-box">
+                    <div class="bio-grid-new">
+                        <div class="bio-section-new">
+                            <h2 class="bio-heading">Roots</h2>
+                            <p class="bio-text">Mudit grew up in Lucknow with values shaped by his parents—being grounded, staying close to people, and serving the community. These principles continue to guide his work today.</p>
+                        </div>
+
+                        <div class="bio-section-new">
+                            <h2 class="bio-heading">Education</h2>
+                            <p class="bio-text">He completed his schooling at The Indian Public School in Dehradun before moving to the United States to study at Arizona State University.</p>
+                        </div>
+
+                        <div class="bio-section-new">
+                            <h2 class="bio-heading">Service at ASU</h2>
+                            <p class="bio-text">Beyond academics, Mudit dedicated time to community and mentorship. He was the Founding First Officer of PIERA, served as a residential peer mentor, and worked at ISSC.</p>
+                        </div>
+
+                        <div class="bio-section-new">
+                            <h2 class="bio-heading">Current Work</h2>
+                            <p class="bio-text">Today, Mudit leads a team across his ventures—<a href="https://devalok.in" target="_blank">Devalok</a> and <a href="https://oshm.in" target="_blank">Oshm</a>—while establishing an office in Lucknow.</p>
+                        </div>
+
+                        <div class="bio-section-new">
+                            <h2 class="bio-heading">Recognition</h2>
+                            <p class="bio-text">In December 2025, Mudit was selected as the Convocation Speaker and Impact Award recipient for the Fulton Schools of Engineering at ASU. He has been featured in The Chronicle of Higher Education, ASU News, and QS Insights Magazine.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Speaking Section -->
+            <section class="design-section">
+                <div class="design-section-header">
+                    <div>
+                        <p class="design-section-label">Recognition Page (New)</p>
+                        <h2 class="design-section-title">Speaking Section</h2>
+                        <p class="design-section-desc">Featured speaking engagement with image and details</p>
+                    </div>
+                </div>
+
+                <div class="design-preview-box">
+                    <section class="speaking-section">
+                        <p class="press-label" style="margin-bottom: 20px;">Speaking</p>
+
+                        <a href="/live" class="speaking-card">
+                            <div class="speaking-card-content">
+                                <img src="/images/about/piera-mudit-candid.jpg" alt="Mudit Lal speaking" class="speaking-card-image">
+                                <div class="speaking-card-body">
+                                    <p class="speaking-card-type">Convocation Speaker · Impact Award</p>
+                                    <h3 class="speaking-card-title">Fall 2025 Fulton Engineering Convocation</h3>
+                                    <p class="speaking-card-desc">Selected as the student convocation speaker and Impact Award recipient for the Ira A. Fulton Schools of Engineering at Arizona State University.</p>
+                                    <div class="speaking-card-meta">
+                                        <span class="speaking-card-date">December 18, 2025 · Desert Financial Arena</span>
+                                        <span class="speaking-card-cta">Watch recording →</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </section>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // Mobile Navigation Toggle
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('active');
+            document.getElementById('navToggle').classList.toggle('active');
+        }
+
+        // Theme Toggle
+        (function() {
+            const themeToggle = document.getElementById('themeToggle');
+            const html = document.documentElement;
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -832,6 +832,25 @@ body::before {
     font-size: 1.4rem;
 }
 
+/* Devalok Pulsating Glow Animation - Very subtle, barely noticeable */
+@keyframes devalokGlow {
+    0%, 100% {
+        box-shadow: 0 4px 12px rgba(211, 49, 99, 0.08);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(211, 49, 99, 0.2),
+                    0 0 35px rgba(211, 49, 99, 0.08);
+    }
+}
+
+.venture-card.venture-featured[data-brand="devalok"] {
+    animation: devalokGlow 8s ease-in-out infinite;
+}
+
+.venture-card.venture-featured[data-brand="devalok"]:hover {
+    animation-play-state: paused;
+}
+
 /* WIP Ventures */
 .ventures-wip {
     margin-top: 20px;
@@ -1399,6 +1418,96 @@ body::before {
     gap: 0.75rem;
 }
 
+/* Speaking Section */
+.press-speaking-section {
+    margin-bottom: 4rem;
+}
+
+.speaking-card {
+    display: block;
+    background: var(--cream);
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.speaking-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--burgundy);
+    box-shadow: 0 8px 25px var(--shadow);
+}
+
+.speaking-card-content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+}
+
+.speaking-card-image {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    object-fit: cover;
+}
+
+.speaking-card-body {
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.speaking-card-type {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    margin-bottom: 8px;
+}
+
+.speaking-card-title {
+    font-family: Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+}
+
+.speaking-card-desc {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0 0 15px 0;
+}
+
+.speaking-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.speaking-card-date {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.speaking-card-cta {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--burgundy);
+}
+
 /* Press Footer */
 .press-footer {
     text-align: center;
@@ -1495,7 +1604,7 @@ body::before {
 
 /* About Container */
 .about-container {
-    max-width: 720px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 2rem 2rem 4rem;
 }
@@ -1525,6 +1634,34 @@ body::before {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
+}
+
+/* 2-Column Grid Layout for Bio Sections */
+.about-bio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+}
+
+.about-bio-grid .bio-section {
+    background: var(--cream-dark);
+    border: 1px solid var(--border-light);
+    padding: 25px 30px;
+}
+
+.about-bio-grid .bio-section-full {
+    grid-column: 1 / -1;
+}
+
+.about-bio-grid .bio-heading {
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.about-bio-grid .bio-heading::before {
+    display: none;
 }
 
 .bio-section {
@@ -1964,6 +2101,11 @@ body::before {
     text-align: left;
     transition: all 0.3s ease;
     position: relative;
+    animation: devalokGlow 8s ease-in-out infinite;
+}
+
+.live-venture-card:hover {
+    animation-play-state: paused;
 }
 
 .live-venture-card::before {
@@ -2043,6 +2185,60 @@ body::before {
     color: var(--border-light);
 }
 
+/* Redesigned "While You Wait" Section - 2 Column Layout */
+.live-explore-redesigned {
+    text-align: left;
+}
+
+.live-explore-redesigned .live-explore-label {
+    text-align: center;
+}
+
+.live-explore-bio {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 25px;
+    align-items: start;
+    margin-bottom: 25px;
+}
+
+.live-explore-photo {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border: 1px solid var(--border-light);
+}
+
+.live-explore-bio-text {
+    font-family: Georgia, serif;
+    font-size: 15px;
+    color: var(--charcoal-light);
+    line-height: 1.7;
+}
+
+.live-explore-bio-text p {
+    margin: 0 0 12px 0;
+}
+
+.live-explore-bio-text p:last-child {
+    margin-bottom: 0;
+}
+
+.live-explore-divider-line {
+    height: 1px;
+    background: var(--border-light);
+    margin: 25px 0;
+}
+
+.live-explore-redesigned .live-venture-card {
+    max-width: none;
+    margin: 0 0 25px 0;
+}
+
+.live-explore-redesigned .live-explore-links {
+    justify-content: flex-start;
+}
+
 /* Live Footer */
 .live-footer {
     text-align: center;
@@ -2101,6 +2297,20 @@ body::before {
 
     .live-explore-divider {
         display: none;
+    }
+
+    /* Redesigned "While You Wait" - Mobile */
+    .live-explore-bio {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .live-explore-photo {
+        margin: 0 auto;
+    }
+
+    .live-explore-redesigned .live-explore-links {
+        justify-content: center;
     }
 }
 
@@ -2306,6 +2516,15 @@ body::before {
         padding: 1.75rem;
     }
 
+    /* Speaking Card - Mobile */
+    .speaking-card-content {
+        grid-template-columns: 1fr;
+    }
+
+    .speaking-card-image {
+        height: 200px;
+    }
+
     /* About Page */
     .about-page {
         padding-top: 80px;
@@ -2331,5 +2550,18 @@ body::before {
     .about-hero {
         padding: 0 1.5rem;
         margin-bottom: 2rem;
+    }
+
+    /* About Bio Grid - Mobile */
+    .about-bio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-bio-grid .bio-section-full {
+        grid-column: 1;
+    }
+
+    .about-bio-grid .bio-section {
+        padding: 20px;
     }
 }
