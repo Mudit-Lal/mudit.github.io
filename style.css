@@ -832,23 +832,42 @@ body::before {
     font-size: 1.4rem;
 }
 
-/* Devalok Pulsating Glow Animation - Very subtle, barely noticeable */
-@keyframes devalokGlow {
-    0%, 100% {
-        box-shadow: 0 4px 12px rgba(211, 49, 99, 0.08);
+/* Devalok Line Trace Animation - Subtle border highlight */
+@keyframes devalokLineTrace {
+    0% {
+        clip-path: inset(0 100% 100% 0);
+    }
+    25% {
+        clip-path: inset(0 0 100% 0);
     }
     50% {
-        box-shadow: 0 4px 20px rgba(211, 49, 99, 0.2),
-                    0 0 35px rgba(211, 49, 99, 0.08);
+        clip-path: inset(0 0 0 100%);
+    }
+    75% {
+        clip-path: inset(100% 0 0 0);
+    }
+    100% {
+        clip-path: inset(100% 100% 0 0);
     }
 }
 
 .venture-card.venture-featured[data-brand="devalok"] {
-    animation: devalokGlow 8s ease-in-out infinite;
+    position: relative;
 }
 
-.venture-card.venture-featured[data-brand="devalok"]:hover {
+.venture-card.venture-featured[data-brand="devalok"]::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border: 2px solid var(--devalok-brand);
+    pointer-events: none;
+    opacity: 0.4;
+    animation: devalokLineTrace 8s linear infinite;
+}
+
+.venture-card.venture-featured[data-brand="devalok"]:hover::after {
     animation-play-state: paused;
+    opacity: 0;
 }
 
 /* WIP Ventures */
@@ -2101,11 +2120,21 @@ body::before {
     text-align: left;
     transition: all 0.3s ease;
     position: relative;
-    animation: devalokGlow 8s ease-in-out infinite;
 }
 
-.live-venture-card:hover {
+.live-venture-card::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border: 2px solid var(--devalok-brand);
+    pointer-events: none;
+    opacity: 0.4;
+    animation: devalokLineTrace 8s linear infinite;
+}
+
+.live-venture-card:hover::after {
     animation-play-state: paused;
+    opacity: 0;
 }
 
 .live-venture-card::before {

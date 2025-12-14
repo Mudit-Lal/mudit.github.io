@@ -1,0 +1,10 @@
+# Private files - do not upload to GitHub
+facts.md
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
