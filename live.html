@@ -60,6 +60,21 @@
       gtag('js', new Date());
       gtag('config', 'G-4HSVES0V4H');
     </script>
+
+    <!-- OneSignal Push Notifications -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "041def8e-04f5-4704-8c16-91dca360fbd6",
+          safari_web_id: "web.onesignal.auto.14c30330-c4fb-483f-9c66-942ad147f917",
+          notifyButton: {
+            enable: false,
+          },
+        });
+      });
+    </script>
 </head>
 <body class="live-page">
     <!-- Navigation -->
@@ -319,94 +334,101 @@
         setInterval(updateCountdown, 60000);
 
         // =====================================================
-        // BROWSER NOTIFICATIONS
+        // ONESIGNAL PUSH NOTIFICATIONS
         // =====================================================
         const remindBtn = document.getElementById('remind-btn');
         const remindBtnText = document.getElementById('remind-btn-text');
         const reminderStatus = document.getElementById('reminder-status');
 
-        function scheduleNotification(time, title, body) {
-            const delay = time - Date.now();
-            if (delay > 0 && Notification.permission === 'granted') {
-                setTimeout(() => {
-                    new Notification(title, {
-                        body: body,
-                        icon: '/images/og-image.jpg'
-                    });
-                }, delay);
+        async function updateReminderUI() {
+            // Wait for OneSignal to be ready
+            if (typeof OneSignal === 'undefined') {
+                // OneSignal not loaded yet, check localStorage as fallback
+                if (localStorage.getItem('liveReminder') === 'set') {
+                    remindBtnText.textContent = 'Reminder Set';
+                    remindBtn.classList.add('reminder-active');
+                    reminderStatus.textContent = 'You\'ll be notified before the speech.';
+                }
+                return;
             }
-        }
 
-        function setupReminders() {
-            // 12 hours before
-            scheduleNotification(
-                SPEECH_TIME - (12 * 60 * 60 * 1000),
-                'Reminder: Convocation Tomorrow',
-                'Mudit Lal\'s convocation speech is in 12 hours. Don\'t forget to tune in!'
-            );
-
-            // 30 minutes before
-            scheduleNotification(
-                SPEECH_TIME - (30 * 60 * 1000),
-                'Starting Soon!',
-                'Mudit\'s speech begins in 30 minutes. Watch live now!'
-            );
-        }
-
-        function updateReminderUI() {
-            const isSet = localStorage.getItem('liveReminder') === 'set';
-            if (isSet) {
-                remindBtnText.textContent = 'Reminder Set';
-                remindBtn.classList.add('reminder-active');
-                reminderStatus.textContent = 'You\'ll be notified 12 hours and 30 minutes before the speech.';
-                setupReminders();
+            try {
+                const isSubscribed = await OneSignal.User.PushSubscription.optedIn;
+                if (isSubscribed) {
+                    remindBtnText.textContent = 'Reminder Set ✓';
+                    remindBtn.classList.add('reminder-active');
+                    reminderStatus.textContent = 'You\'ll be notified before the speech.';
+                    localStorage.setItem('liveReminder', 'set');
+                }
+            } catch (e) {
+                console.log('OneSignal status check:', e);
             }
         }
 
         remindBtn.addEventListener('click', async () => {
-            if (localStorage.getItem('liveReminder') === 'set') {
-                // Already set - remove reminder
-                localStorage.removeItem('liveReminder');
+            // Check if already subscribed
+            let isSubscribed = false;
+            try {
+                isSubscribed = await OneSignal.User.PushSubscription.optedIn;
+            } catch (e) {
+                console.log('OneSignal check error:', e);
+            }
+
+            if (isSubscribed) {
+                // Already subscribed - unsubscribe
+                try {
+                    await OneSignal.User.PushSubscription.optOut();
+                    localStorage.removeItem('liveReminder');
+                    remindBtnText.textContent = 'Remind Me';
+                    remindBtn.classList.remove('reminder-active');
+                    reminderStatus.textContent = 'Reminder cancelled.';
+                    setTimeout(() => { reminderStatus.textContent = ''; }, 3000);
+
+                    gtag('event', 'reminder_cancelled', {
+                        'notification_type': 'onesignal'
+                    });
+                } catch (e) {
+                    reminderStatus.textContent = 'Could not cancel. Please try again.';
+                }
+                return;
+            }
+
+            // Subscribe to notifications
+            try {
+                remindBtnText.textContent = 'Setting up...';
+                await OneSignal.Notifications.requestPermission();
+
+                // Check if now subscribed
+                const nowSubscribed = await OneSignal.User.PushSubscription.optedIn;
+
+                if (nowSubscribed) {
+                    localStorage.setItem('liveReminder', 'set');
+                    remindBtnText.textContent = 'Reminder Set ✓';
+                    remindBtn.classList.add('reminder-active');
+                    reminderStatus.textContent = 'You\'ll be notified before the speech.';
+
+                    gtag('event', 'reminder_set', {
+                        'notification_type': 'onesignal'
+                    });
+                } else {
+                    remindBtnText.textContent = 'Remind Me';
+                    reminderStatus.textContent = 'Please allow notifications to receive reminders.';
+                }
+            } catch (e) {
+                console.error('OneSignal subscription error:', e);
                 remindBtnText.textContent = 'Remind Me';
-                remindBtn.classList.remove('reminder-active');
-                reminderStatus.textContent = 'Reminder cancelled.';
-                setTimeout(() => { reminderStatus.textContent = ''; }, 3000);
-
-                // GA4 Event
-                gtag('event', 'reminder_cancelled', {
-                    'notification_type': 'browser'
-                });
-                return;
-            }
-
-            if (!('Notification' in window)) {
-                reminderStatus.textContent = 'Notifications not supported in this browser.';
-                return;
-            }
-
-            const permission = await Notification.requestPermission();
-
-            if (permission === 'granted') {
-                localStorage.setItem('liveReminder', 'set');
-                updateReminderUI();
-
-                // Send immediate test notification to confirm it's working
-                new Notification('Reminder Set!', {
-                    body: 'You\'ll be notified 12 hours and 30 minutes before Mudit\'s speech.',
-                    icon: '/images/og-image.jpg'
-                });
-
-                // GA4 Event
-                gtag('event', 'reminder_set', {
-                    'notification_type': 'browser'
-                });
-            } else if (permission === 'denied') {
-                reminderStatus.textContent = 'Notifications blocked. Please enable in browser settings.';
+                reminderStatus.textContent = 'Could not set up notifications. Please try again.';
             }
         });
 
-        // Check if reminder was previously set
-        updateReminderUI();
+        // Check subscription status when OneSignal is ready
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function(OneSignal) {
+            await updateReminderUI();
+
+            // Listen for subscription changes
+            OneSignal.User.PushSubscription.addEventListener('change', updateReminderUI);
+        });
 
         // =====================================================
         // GA4 EVENT TRACKING
