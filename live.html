@@ -255,7 +255,7 @@
         // =====================================================
         const CEREMONY_TIME = new Date('2025-12-18T21:00:00Z');  // 2:00 PM MST
         const SPEECH_TIME = new Date('2025-12-18T21:10:00Z');    // 2:10 PM MST
-        const LIVE_START = new Date('2025-12-18T20:55:00Z');     // 5 min before ceremony
+        const LIVE_START = new Date('2025-12-18T21:00:00Z');     // When ceremony starts
         const EVENT_END = new Date('2025-12-19T00:00:00Z');      // 5:00 PM MST
 
         // For testing - override with URL params: ?state=pre|live|post
@@ -318,7 +318,7 @@
         // =====================================================
         function updateCountdown() {
             const now = new Date();
-            const diff = SPEECH_TIME - now;
+            const diff = CEREMONY_TIME - now;
 
             if (diff <= 0) {
                 document.getElementById('countdown').style.display = 'none';

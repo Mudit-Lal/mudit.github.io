@@ -279,9 +279,9 @@
         // Livestream State Management (with auto-update)
         (function() {
             // Event: Dec 18, 2025 2:00 PM MST (UTC-7) = Dec 18, 2025 21:00 UTC
-            // Show livestream at 1:55 PM MST = Dec 18, 2025 20:55 UTC
+            // Show livestream when ceremony starts = Dec 18, 2025 21:00 UTC (2:00 PM MST)
             // Hide after event ends = Dec 19, 2025 00:00 UTC (5:00 PM MST)
-            const showTime = new Date('2025-12-18T20:55:00Z');
+            const showTime = new Date('2025-12-18T21:00:00Z');
             const hideTime = new Date('2025-12-19T00:00:00Z');
 
             function updateState() {
