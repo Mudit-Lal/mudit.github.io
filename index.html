@@ -156,7 +156,12 @@
                     </div>
                 </div>
 
-                <div class="event-countdown" id="countdown"></div>
+                <div class="live-countdown" id="countdown">
+                    <span class="countdown-value" id="countdown-hours">--</span>
+                    <span class="countdown-label">hours</span>
+                    <span class="countdown-value" id="countdown-mins">--</span>
+                    <span class="countdown-label">min</span>
+                </div>
 
                 <div class="timezone-hint" id="timezone-hint">
                     Speech: 2:10 PM AZ · 2:40 AM IST · 4:10 PM EST · 1:10 PM PST
@@ -328,27 +333,21 @@
         // Countdown Timer
         (function() {
             const eventDate = new Date('2025-12-18T21:00:00Z'); // 2:00 PM MST
-            const countdownEl = document.getElementById('countdown');
 
             function updateCountdown() {
                 const now = new Date();
                 const diff = eventDate - now;
 
                 if (diff <= 0) {
-                    countdownEl.textContent = '';
+                    document.getElementById('countdown').style.display = 'none';
                     return;
                 }
 
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const totalHours = Math.floor(diff / (1000 * 60 * 60));
                 const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-                let text = '';
-                if (days > 0) text += days + 'd ';
-                if (hours > 0 || days > 0) text += hours + 'h ';
-                text += mins + 'm until ceremony';
-
-                countdownEl.textContent = text;
+                document.getElementById('countdown-hours').textContent = totalHours;
+                document.getElementById('countdown-mins').textContent = mins;
             }
 
             updateCountdown();
