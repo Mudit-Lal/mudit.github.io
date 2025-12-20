@@ -2180,6 +2180,25 @@ body::before {
     color: var(--gold);
 }
 
+/* Video Embed */
+.video-embed {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto 30px;
+    aspect-ratio: 16 / 9;
+    background: #000;
+}
+
+.video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
 /* While You Wait / Explore Section */
 .live-explore {
     text-align: center;
