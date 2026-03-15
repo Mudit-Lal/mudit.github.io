@@ -74,7 +74,7 @@
           },
           welcomeNotification: {
             title: "The Office of Mudit Lal",
-            message: "You're all set. We'll notify you before the convocation speech on December 18th.",
+            message: "You're all set. You'll be notified about new updates and events.",
           },
         });
       });
@@ -112,11 +112,11 @@
             </svg>
         </button>
 
-        <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+        <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Toggle navigation menu">
             <span></span>
             <span></span>
             <span></span>
-        </div>
+        </button>
     </nav>
 
     <main class="container">
@@ -282,95 +282,6 @@
                 gtag('event', 'theme_toggle', {
                     'theme': newTheme
                 });
-            });
-        })();
-
-        // Homepage Reminder Button (OneSignal)
-        (function() {
-            const homeRemindBtn = document.getElementById('home-remind-btn');
-            const homeRemindText = document.getElementById('home-remind-text');
-            const homeReminderStatus = document.getElementById('home-reminder-status');
-
-            async function updateReminderUI() {
-                if (typeof OneSignal === 'undefined') {
-                    if (localStorage.getItem('liveReminder') === 'set') {
-                        homeRemindText.textContent = 'Reminder Set';
-                        homeRemindBtn.classList.add('reminder-active');
-                    }
-                    return;
-                }
-
-                try {
-                    const isSubscribed = await OneSignal.User.PushSubscription.optedIn;
-                    if (isSubscribed) {
-                        homeRemindText.textContent = 'Reminder Set ✓';
-                        homeRemindBtn.classList.add('reminder-active');
-                        localStorage.setItem('liveReminder', 'set');
-                    } else {
-                        homeRemindText.textContent = 'Remind Me';
-                        homeRemindBtn.classList.remove('reminder-active');
-                    }
-                } catch (e) {
-                    console.log('OneSignal status check:', e);
-                }
-            }
-
-            homeRemindBtn.addEventListener('click', async () => {
-                let isSubscribed = false;
-                try {
-                    isSubscribed = await OneSignal.User.PushSubscription.optedIn;
-                } catch (e) {
-                    console.log('OneSignal check error:', e);
-                }
-
-                if (isSubscribed) {
-                    try {
-                        await OneSignal.User.PushSubscription.optOut();
-                        localStorage.removeItem('liveReminder');
-                        homeRemindText.textContent = 'Remind Me';
-                        homeRemindBtn.classList.remove('reminder-active');
-                        homeReminderStatus.textContent = 'Reminder cancelled.';
-                        setTimeout(() => { homeReminderStatus.textContent = ''; }, 3000);
-                        gtag('event', 'reminder_cancelled', { 'notification_type': 'onesignal', 'source': 'homepage' });
-                    } catch (e) {
-                        homeReminderStatus.textContent = 'Could not cancel. Please try again.';
-                    }
-                    return;
-                }
-
-                try {
-                    homeRemindText.textContent = 'Setting up...';
-                    await OneSignal.Notifications.requestPermission();
-
-                    const nowSubscribed = await OneSignal.User.PushSubscription.optedIn;
-
-                    if (nowSubscribed) {
-                        localStorage.setItem('liveReminder', 'set');
-                        homeRemindText.textContent = 'Reminder Set ✓';
-                        homeRemindBtn.classList.add('reminder-active');
-                        homeReminderStatus.textContent = 'You\'ll be notified before the speech.';
-                        gtag('event', 'reminder_set', { 'notification_type': 'onesignal', 'source': 'homepage' });
-                    } else {
-                        homeRemindText.textContent = 'Remind Me';
-                        homeReminderStatus.textContent = 'Please allow notifications to receive reminders.';
-                    }
-                } catch (e) {
-                    console.error('OneSignal subscription error:', e);
-                    homeRemindText.textContent = 'Remind Me';
-                    homeReminderStatus.textContent = 'Could not set up notifications. Please try again.';
-                }
-            });
-
-            // Calendar click tracking
-            document.getElementById('home-calendar-btn').addEventListener('click', () => {
-                gtag('event', 'calendar_add', { 'calendar_type': 'google', 'source': 'homepage' });
-            });
-
-            // Check subscription status when OneSignal is ready
-            window.OneSignalDeferred = window.OneSignalDeferred || [];
-            OneSignalDeferred.push(async function(OneSignal) {
-                await updateReminderUI();
-                OneSignal.User.PushSubscription.addEventListener('change', updateReminderUI);
             });
         })();
 
