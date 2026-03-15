@@ -2,119 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script>
+        // Prevent flash of wrong theme
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Our Generation. Our Move. — Guest lecture by Mudit Lal at Amity University, Lucknow for ~100 MBA & BBA students.">
     <meta name="author" content="Mudit Lal">
-    <title>Our Generation. Our Move. | Mudit Lal</title>
+    <title>Our Generation. Our Move. | The Office of Mudit Lal</title>
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Our Generation. Our Move. | Mudit Lal">
+    <meta property="og:title" content="Our Generation. Our Move. | The Office of Mudit Lal">
     <meta property="og:description" content="Guest lecture at Amity University, Lucknow — ideas on generational privilege, value beyond money, and building with integrity.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://muditlal.com/amity-guest-lecture.html">
+    <meta property="og:image" content="https://muditlal.com/images/amity-guest-lecture/presenting-slide.jpeg">
+    <meta property="og:image:alt" content="Mudit Lal presenting 'Do the right thing' slide to students at Amity University">
+    <meta property="og:site_name" content="The Office of Mudit Lal">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@mudit_lal">
+    <meta name="twitter:creator" content="@mudit_lal">
+    <meta name="twitter:title" content="Our Generation. Our Move. | The Office of Mudit Lal">
+    <meta name="twitter:description" content="Guest lecture at Amity University, Lucknow — ideas on generational privilege, value beyond money, and building with integrity.">
+    <meta name="twitter:image" content="https://muditlal.com/images/amity-guest-lecture/presenting-slide.jpeg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://muditlal.com/amity-guest-lecture.html">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#FAF8F5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
 
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/98d66e4736.js" crossorigin="anonymous"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124820630-2"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4HSVES0V4H"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'UA-124820630-2');
+      gtag('config', 'G-4HSVES0V4H');
     </script>
 
     <style>
-        /* CSS Variables */
-        :root {
-            --burgundy: #722F37;
-            --burgundy-dark: #5a252c;
-            --burgundy-light: #8a3a44;
-            --gold: #C9A227;
-            --gold-light: #D4AF37;
-            --gold-pale: #E8D5A3;
-            --cream: #FAF8F5;
-            --cream-dark: #F5F0E8;
-            --charcoal: #1a1a1a;
-            --charcoal-light: #2d2d2d;
-            --text-muted: #6b6b6b;
-        }
+        /* ===== Lecture Page Specific Styles ===== */
 
-        /* Reset & Base */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            background-color: var(--cream);
-            color: var(--charcoal);
-            min-height: 100vh;
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        /* Subtle background texture */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                radial-gradient(circle at 20% 80%, rgba(114, 47, 55, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(201, 162, 39, 0.04) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Main Container — wider than homepage */
-        .container {
+        /* Wider container for lecture content */
+        .lecture-page .container {
             max-width: 900px;
-            margin: 0 auto;
-            padding: 60px 40px;
-        }
-
-        /* Gold accent line */
-        .gold-line {
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 25%, #fff 50%, var(--gold-light) 75%, var(--gold) 100%);
-            background-size: 200% 100%;
-            margin: 0 auto 40px auto;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 0.2s forwards, shimmer 3s ease-in-out 2s infinite;
-        }
-
-        /* Decorative star */
-        .decorative-star {
-            text-align: center;
-            font-size: 20px;
-            color: var(--gold);
-            letter-spacing: 12px;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 0.3s forwards, float 4s ease-in-out 1.5s infinite;
-        }
-
-        /* Section label (reused from homepage) */
-        .section-label {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 10px;
-            font-weight: 400;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 12px;
         }
 
         /* Back link */
@@ -357,7 +307,7 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            background: #fff;
+            background: var(--cream);
             border: 1px solid var(--gold-pale);
             border-radius: 8px;
             padding: 16px 20px;
@@ -526,41 +476,6 @@
             margin-bottom: 20px;
         }
 
-        /* CTA button (from homepage) */
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cta-primary {
-            background: var(--burgundy);
-            color: #fff;
-            border: 1px solid var(--burgundy);
-        }
-
-        .cta-primary:hover {
-            background: var(--burgundy-dark);
-            border-color: var(--burgundy-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(114, 47, 55, 0.25);
-        }
-
-        .cta-icon {
-            width: 14px;
-            height: 14px;
-            fill: currentColor;
-        }
-
         /* Lightbox */
         .lightbox {
             position: fixed;
@@ -627,31 +542,8 @@
             padding: 0;
         }
 
-        /* Footer (from homepage) */
-        .footer {
-            text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(201, 162, 39, 0.2);
-        }
-
-        .footer-office {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 10px;
-            font-weight: 400;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 10px;
-        }
-
-        .footer-location {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 12px;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-
-        .ventures {
+        /* Footer venture links */
+        .lecture-footer .ventures {
             margin-top: 20px;
             display: flex;
             justify-content: center;
@@ -676,6 +568,41 @@
         .venture-separator {
             color: var(--gold-pale);
             font-size: 10px;
+        }
+
+        /* CTA button overrides for lecture page */
+        .lecture-page .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .lecture-page .cta-primary {
+            background: var(--burgundy);
+            color: #fff;
+            border: 1px solid var(--burgundy);
+        }
+
+        .lecture-page .cta-primary:hover {
+            background: var(--burgundy-dark);
+            border-color: var(--burgundy-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(114, 47, 55, 0.25);
+        }
+
+        .lecture-page .cta-icon {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
         }
 
         /* Animations */
@@ -710,8 +637,8 @@
 
         /* Responsive */
         @media (max-width: 600px) {
-            .container {
-                padding: 40px 25px;
+            .lecture-page .container {
+                padding: 100px 25px 40px;
             }
 
             .hero-image {
@@ -760,7 +687,7 @@
                 min-width: 65px;
             }
 
-            .ventures {
+            .lecture-footer .ventures {
                 flex-direction: column;
                 gap: 10px;
             }
@@ -771,10 +698,48 @@
         }
     </style>
 </head>
-<body>
+<body class="lecture-page">
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="/" class="nav-brand">
+            <span class="nav-brand-label">The Office of</span>
+            <span class="nav-brand-name">Mudit Lal</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="/about" class="nav-link">About</a></li>
+            <li><a href="/press" class="nav-link">Recognition</a></li>
+            <li><a href="mailto:office@muditlal.com" class="nav-link">Contact</a></li>
+        </ul>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <svg class="moon-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
     <main class="container">
         <!-- Back Link -->
-        <a href="index.html" class="back-link">&larr; Back to Home</a>
+        <a href="/" class="back-link">&larr; Back to Home</a>
 
         <!-- Gold Accent Line -->
         <div class="gold-line"></div>
@@ -947,9 +912,10 @@
         </section>
 
         <!-- Footer -->
-        <footer class="footer">
-            <p class="footer-office">Office of Mudit Lal</p>
+        <footer class="footer lecture-footer">
+            <p class="footer-office">The Office of Mudit Lal</p>
             <p class="footer-location">Lucknow, Bharat (India)</p>
+            <p class="footer-contact">For inquiries: <a href="mailto:office@muditlal.com">office@muditlal.com</a></p>
 
             <div class="ventures">
                 <a href="https://devalok.in" target="_blank" rel="noopener" class="venture-link">devalok.in</a>
@@ -968,12 +934,49 @@
     </div>
 
     <script>
+        // Mobile Navigation Toggle
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('active');
+            document.getElementById('navToggle').classList.toggle('active');
+        }
+
+        // Close nav when clicking a link (mobile)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+                document.getElementById('navToggle').classList.remove('active');
+            });
+        });
+
+        // Theme Toggle
+        (function() {
+            const themeToggle = document.getElementById('themeToggle');
+            const html = document.documentElement;
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+
+                gtag('event', 'theme_toggle', {
+                    'theme': newTheme
+                });
+            });
+        })();
+
+        // Lightbox
         (function() {
             var lightbox = document.getElementById('lightbox');
             var lightboxImg = lightbox.querySelector('img');
             var lightboxClose = document.getElementById('lightbox-close');
 
-            // Select all clickable images
             var images = document.querySelectorAll('.hero-image, .section-image, .gallery img, .content-section img');
 
             images.forEach(function(img) {
@@ -985,30 +988,25 @@
                 });
             });
 
-            // Close on button click
             lightboxClose.addEventListener('click', function(e) {
                 e.stopPropagation();
                 lightbox.classList.remove('active');
             });
 
-            // Close on backdrop click
             lightbox.addEventListener('click', function(e) {
                 if (e.target === lightbox) {
                     lightbox.classList.remove('active');
                 }
             });
 
-            // Close on Escape key
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     lightbox.classList.remove('active');
                 }
             });
         })();
-    </script>
 
-    <!-- Custom Audio Player -->
-    <script>
+        // Custom Audio Player
         (function() {
             var audio = document.getElementById('podcast-audio');
             var player = document.getElementById('audio-player');
@@ -1092,19 +1090,16 @@
                 }
             }
 
-            // Metadata loaded
             audio.addEventListener('loadedmetadata', function() {
                 player.classList.remove('loading');
                 timeDisplay.textContent = '0:00 / ' + formatTime(audio.duration);
             });
 
-            // Also handle case where metadata already loaded
             if (audio.readyState >= 1) {
                 player.classList.remove('loading');
                 timeDisplay.textContent = '0:00 / ' + formatTime(audio.duration);
             }
 
-            // Play / Pause
             playBtn.addEventListener('click', function() {
                 if (audio.paused) {
                     audio.play().catch(function() {});
@@ -1123,7 +1118,6 @@
                 updateProgress();
             });
 
-            // Progress seek — drag
             progressContainer.addEventListener('mousedown', function(e) {
                 isDraggingProgress = true;
                 setProgressFromEvent(e);
@@ -1140,7 +1134,6 @@
                 isDraggingVolume = false;
             });
 
-            // Touch support for progress
             progressContainer.addEventListener('touchstart', function(e) {
                 e.preventDefault();
                 isDraggingProgress = true;
@@ -1158,7 +1151,6 @@
                 isDraggingVolume = false;
             });
 
-            // Volume toggle mute
             volumeBtn.addEventListener('click', function() {
                 audio.muted = !audio.muted;
                 if (audio.muted) {
@@ -1169,16 +1161,13 @@
                 updateVolumeIcon();
             });
 
-            // Volume slider
             volumeSliderContainer.addEventListener('mousedown', function(e) {
                 isDraggingVolume = true;
                 setVolumeFromEvent(e);
                 e.preventDefault();
             });
 
-            // Keyboard support
             document.addEventListener('keydown', function(e) {
-                // Only handle if not typing in an input
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
                 if (e.key === ' ' || e.key === 'Enter') {
                     if (document.activeElement === playBtn) {
@@ -1188,8 +1177,27 @@
                 }
             });
 
-            // Initialize volume slider
             volumeSlider.style.width = (audio.volume * 100) + '%';
+        })();
+
+        // GA4 Event Tracking
+        (function() {
+            document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+                link.addEventListener('click', () => {
+                    gtag('event', 'contact_click', {
+                        'method': 'email'
+                    });
+                });
+            });
+
+            document.querySelectorAll('.social-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    const platform = link.getAttribute('aria-label') || 'unknown';
+                    gtag('event', 'social_click', {
+                        'platform': platform
+                    });
+                });
+            });
         })();
     </script>
 </body>
