@@ -49,8 +49,6 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/98d66e4736.js" crossorigin="anonymous"></script>
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4HSVES0V4H"></script>
@@ -128,6 +126,21 @@
                         </div>
                     </div>
                 </a>
+
+                <a href="amity-guest-lecture.html" rel="noopener" class="speaking-card">
+                    <div class="speaking-card-content">
+                        <img src="/images/amity-guest-lecture/presenting-slide.jpeg" alt="Mudit Lal delivering a guest lecture at Amity University, Lucknow" class="speaking-card-image">
+                        <div class="speaking-card-body">
+                            <p class="speaking-card-type">Guest Lecture · Amity University, Lucknow</p>
+                            <h3 class="speaking-card-title">Our Generation. Our Move.</h3>
+                            <p class="speaking-card-desc">A two-hour guest lecture to ~100 MBA &amp; BBA students on generational privilege, value beyond money, and building with integrity.</p>
+                            <div class="speaking-card-meta">
+                                <span class="speaking-card-date">March 2026 · ~100 students</span>
+                                <span class="speaking-card-cta">Read more →</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </section>
 
             <!-- Featured Coverage -->
@@ -200,6 +213,15 @@
                 <p class="press-label">News Coverage</p>
                 <div class="press-news-list">
 
+                    <a href="https://www.fox10phoenix.com/news/asu-graduation-soon-to-be-alums-reflect-time-school" target="_blank" rel="noopener" class="press-news-item">
+                        <span class="press-news-source">FOX 10 Phoenix</span>
+                        <div class="press-news-content">
+                            <h3 class="press-news-headline">ASU Graduation: Soon-to-Be Alums Reflect on Their Time at School</h3>
+                            <p class="press-news-desc">Featured graduate in the station's winter commencement coverage, with an accompanying broadcast segment</p>
+                        </div>
+                        <span class="press-news-date">December 11, 2025</span>
+                    </a>
+
                     <a href="https://news.asu.edu/20251202-university-news-recordsetting-12000-asu-graduates-set-celebrate-fall-2025-graduation" target="_blank" rel="noopener" class="press-news-item">
                         <span class="press-news-source">ASU News</span>
                         <div class="press-news-content">
@@ -243,6 +265,16 @@
             <section class="press-video-section">
                 <p class="press-label">Conversations</p>
 
+                <button type="button" class="press-video-card video-lightbox-trigger" data-youtube="o6kKOVmkzo8" style="margin-bottom: 1.5rem;">
+                    <p class="press-video-type">FOX 10 Phoenix · Broadcast Segment</p>
+                    <h3 class="press-video-title">ASU Graduates Reflect on Their Time at School</h3>
+                    <p class="press-video-guest">Featured in FOX 10 Phoenix's winter commencement coverage, reflecting on building PIERA and Devalok while at ASU.</p>
+                    <div class="press-video-meta">
+                        <span>FOX 10 Phoenix · December 11, 2025</span>
+                        <span class="press-video-cta">Play video →</span>
+                    </div>
+                </button>
+
                 <a href="https://www.youtube.com/watch?v=kGfQ5oDRm7w" target="_blank" rel="noopener" class="press-video-card">
                     <p class="press-video-type">Official ASU Webinar · YouTube</p>
                     <h3 class="press-video-title">In conversation with Dr. Sethuraman Panchanathan, Padma Shri recipient | PIERA x ASU</h3>
@@ -263,6 +295,15 @@
 
         </div>
     </main>
+
+    <!-- Video Lightbox -->
+    <div class="video-lightbox" id="videoLightbox" aria-hidden="true">
+        <div class="video-lightbox-backdrop" data-lightbox-close></div>
+        <div class="video-lightbox-dialog" role="dialog" aria-modal="true" aria-label="Video player">
+            <button type="button" class="video-lightbox-close" data-lightbox-close aria-label="Close video">&times;</button>
+            <div class="video-lightbox-frame" id="videoLightboxFrame"></div>
+        </div>
+    </div>
 
     <script>
         // Mobile Navigation Toggle
@@ -347,6 +388,48 @@
                         'video_title': title
                     });
                 });
+            });
+        })();
+
+        // Video Lightbox
+        (function() {
+            const lightbox = document.getElementById('videoLightbox');
+            const frame = document.getElementById('videoLightboxFrame');
+            if (!lightbox || !frame) return;
+
+            function openLightbox(youtubeId) {
+                const iframe = document.createElement('iframe');
+                iframe.src = 'https://www.youtube.com/embed/' + encodeURIComponent(youtubeId) + '?autoplay=1&rel=0';
+                iframe.title = 'Video player';
+                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+                iframe.allowFullscreen = true;
+                frame.replaceChildren(iframe);
+                lightbox.classList.add('open');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('open');
+                lightbox.setAttribute('aria-hidden', 'true');
+                frame.replaceChildren();
+                document.body.style.overflow = '';
+            }
+
+            document.querySelectorAll('.video-lightbox-trigger').forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const id = trigger.getAttribute('data-youtube');
+                    if (id) openLightbox(id);
+                });
+            });
+
+            lightbox.querySelectorAll('[data-lightbox-close]').forEach(el => {
+                el.addEventListener('click', closeLightbox);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
             });
         })();
     </script>
