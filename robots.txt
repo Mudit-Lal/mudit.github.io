@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Internal working pages. Also carry a noindex meta tag.
+Disallow: /design-test.html
+Disallow: /og-image-template.html
+
+Sitemap: https://muditlal.com/sitemap.xml

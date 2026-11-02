@@ -200,7 +200,7 @@
         .section-number {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-size: 10px;
-            color: var(--gold);
+            color: var(--gold-text);
             letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 8px;
@@ -253,7 +253,8 @@
         /* Story block (Section 06) */
         .story-block {
             background: var(--cream-dark);
-            border-left: 3px solid var(--burgundy);
+            border: 1px solid var(--border-light);
+            border-top: 1px solid var(--burgundy);
             padding: 30px 35px;
             margin: 20px 0;
             position: relative;
@@ -282,7 +283,7 @@
         }
 
         .story-highlight {
-            color: var(--gold);
+            color: var(--gold-text);
             font-weight: 700;
         }
 
@@ -743,7 +744,7 @@
         <div class="gold-line"></div>
 
         <!-- Decorative Star -->
-        <div class="decorative-star">✦</div>
+        <div class="decorative-star" aria-hidden="true">✦</div>
 
         <!-- Hero -->
         <section class="hero">
@@ -863,7 +864,7 @@
             <div class="section-body">
                 <p>All of the above is strategy. But strategy without character is dangerous.</p>
 
-                <img class="section-image" src="images/amity-guest-lecture/presenting-slide.jpeg" alt="Presenting 'Do the right thing' slide to students" loading="lazy">
+                <img class="section-image" src="images/amity-guest-lecture/presenting-slide.jpeg" alt="Presenting 'Do the right thing' slide to students" loading="lazy" width="1200" height="1600">
 
                 <div class="story-block">
                     <p>We created DIVINI — named the brand, did the full packaging. The work got recognized internationally by World Brand Design Society and Packaging of the World. Then someone with money came along wanting packaging for a tequila brand. The offer: <span class="story-highlight">5× what DIVINI paid, in USD</span>. Early days of the studio. Real money.</p>
@@ -917,9 +918,9 @@
 
             <div class="ventures">
                 <a href="https://devalok.in" target="_blank" rel="noopener" class="venture-link">devalok.in</a>
-                <span class="venture-separator">&middot;</span>
+                <span class="venture-separator" aria-hidden="true">&middot;</span>
                 <a href="https://oshm.in" target="_blank" rel="noopener" class="venture-link">oshm.in</a>
-                <span class="venture-separator">&middot;</span>
+                <span class="venture-separator" aria-hidden="true">&middot;</span>
                 <a href="https://brahmalok.in" target="_blank" rel="noopener" class="venture-link">brahmalok.in</a>
             </div>
         </footer>

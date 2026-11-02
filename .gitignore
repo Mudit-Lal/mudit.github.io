@@ -8,3 +8,8 @@ Thumbs.db
 # IDE files
 .vscode/
 .idea/
+
+# Tool caches (ignored globally on the author's machine; listed here so a
+# fresh clone on another machine does not commit them either)
+.claude/
+.impeccable/

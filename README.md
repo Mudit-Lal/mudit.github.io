@@ -16,7 +16,13 @@ A minimal, elegant personal website built with vanilla HTML, CSS, and JavaScript
 |------|-----|-------------|
 | Home | `/` | Introduction, ventures, convocation event, social links |
 | About | `/about` | Biography, education, current work, recognition |
-| Press | `/press` | Featured coverage, news mentions, conversations |
+| Press | `/press` | Speaking, featured coverage, news mentions, conversations |
+| Amity lecture | `/amity-guest-lecture` | Guest lecture write-up, photo gallery, podcast player |
+| Not found | `/404` | Served by GitHub Pages for any unknown path |
+
+Two pages are reachable by URL but deliberately kept out of search (`noindex, nofollow`
+in the page plus a `Disallow` in `robots.txt`): `design-test.html` is a design preview
+scratchpad, `og-image-template.html` is the screenshot jig described below.
 
 ---
 
@@ -24,24 +30,28 @@ A minimal, elegant personal website built with vanilla HTML, CSS, and JavaScript
 
 ```
 mudit.github.io/
-├── index.html              # Homepage
-├── about.html              # About page
-├── press.html              # Press coverage page
-├── style.css               # Main stylesheet (all pages)
-├── CNAME                   # Custom domain (muditlal.com)
-├── og-image-template.html  # Template for generating OG images
-├── test-livestream.html    # Testing tool for livestream states
+├── index.html                  # Homepage
+├── about.html                  # About page
+├── press.html                  # Recognition / press page
+├── amity-guest-lecture.html    # Guest lecture write-up (self-contained <style>)
+├── 404.html                    # Not-found page, reuses the site shell
+├── design-test.html            # Design preview scratchpad (noindex)
+├── og-image-template.html      # Screenshot jig for the OG image (noindex)
+├── style.css                   # Main stylesheet (all pages except the lecture)
+├── robots.txt                  # Allows everything but the two internal pages
+├── sitemap.xml                 # The four public pages
+├── CNAME                       # Custom domain (muditlal.com)
 ├── README.md
 │
+├── downloads/
+│   └── amity-guest-lecture-student-takeaway.pdf
+├── media/
+│   └── amity-guest-lecture-podcast.m4a
 └── images/
-    ├── og-image.png        # Open Graph image (1200x630)
+    ├── og-image.jpg            # Open Graph image (1200x630)
     ├── about/
-    │   └── piera-mudit-candid.jpg
+    ├── amity-guest-lecture/
     └── press/
-        ├── asu-mudit-lal.jpg
-        ├── chronicle-mudit-lal.jpg
-        ├── qs-international-students.jpg
-        └── shoutout-mudit-lal.jpg
 ```
 
 ---
@@ -71,6 +81,7 @@ mudit.github.io/
 
 ### Special Features
 - **Convocation Section** (index.html): Time-based display logic for pre-event countdown, livestream link, and post-event message
+- **Video lightbox** (press.html): Conversation cards play in-page instead of leaving the site
 - **Venture Cards**: Links to Devalok, Oshm, and upcoming ventures with brand-specific accent colors
 
 ---
@@ -149,6 +160,62 @@ All colors are CSS custom properties in `style.css`:
     <span class="press-news-date">Month Day, Year</span>
 </a>
 ```
+
+### Adding a Conversation (video) Card
+
+Cards live in `.press-video-grid` on `press.html` and tile two-up above 768px.
+A card that should play in-page is a `<button>` carrying the YouTube id; the
+optional `data-start` is the entry point in **seconds**:
+
+```html
+<button type="button" class="press-video-card video-lightbox-trigger"
+        data-youtube="VIDEO_ID" data-start="109">
+    <div class="press-video-cover">
+        <img src="/images/press/thumbnail.jpg" alt="Description"
+             loading="lazy" width="1160" height="652">
+        <div class="press-video-cover-overlay"></div>
+        <span class="press-video-play" aria-hidden="true"></span>
+    </div>
+    <div class="press-video-body">
+        <p class="press-video-type">Publication &middot; Format</p>
+        <h3 class="press-video-title">Title</h3>
+        <p class="press-video-guest">One or two sentences of context.</p>
+        <div class="press-video-meta">
+            <span>Source &middot; Month Day, Year</span>
+            <span class="press-video-cta">Play from 1:49 &rarr;</span>
+        </div>
+    </div>
+</button>
+```
+
+Thumbnails are **copied into `images/press/`, never hotlinked**. Grab one with
+`https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg` and resize to 1160px wide.
+
+Beware: a re-upload of the same footage shifts every timestamp. The FOX 10
+segment and ASU's copy of it are the same tape, but ASU drops the studio toss,
+so the same moment is 1:49 in one and 1:39 in the other.
+
+---
+
+## Accessibility Rules
+
+Four things here are load-bearing. Breaking them silently regresses the site:
+
+1. **`--gold` is not a text colour on cream.** It lands at 2.28:1, well under
+   the 4.5:1 floor. Small type on a light background uses **`--gold-text`**
+   (`#856810`, 4.97:1). On the dark cards `--gold` is fine (7.2:1) and is used
+   directly. In dark mode `--gold-text` resolves back to the bright gold.
+2. **Entrance animations start at `opacity: 0`.** The `prefers-reduced-motion`
+   block therefore collapses the timeline instead of writing `animation: none`,
+   which would strand every revealed element invisible. If you add a reveal,
+   add its selector to the opacity reset at the bottom of `style.css`.
+3. **Nav controls are visually small on purpose.** `.nav-link`, `.theme-toggle`
+   and `.nav-toggle` get a transparent `::before` stretched to 44x44 so the
+   touch target meets WCAG 2.5.5 without growing the bar. Don't remove it.
+4. **Decorative glyphs carry `aria-hidden="true"`** (the ✦ ornaments, the
+   `&middot;` venture separators). They are contrast-exempt only because of it.
+
+---
 
 ### Generating OG Image
 

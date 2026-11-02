@@ -12,6 +12,8 @@
     --gold: #C9A227;
     --gold-light: #D4AF37;
     --gold-pale: #E8D5A3;
+    /* Gold is 2.28:1 on cream — too low for text. Use this for small type. */
+    --gold-text: #856810;
     --cream: #FAF8F5;
     --cream-dark: #F5F0E8;
     --charcoal: #1a1a1a;
@@ -28,12 +30,14 @@
 
 /* Dark Theme */
 [data-theme="dark"] {
-    --burgundy: #a85660;
+    --burgundy: #b8666f;
     --burgundy-dark: #8a4048;
     --burgundy-light: #c06a75;
     --gold: #D4AF37;
     --gold-light: #E0C050;
     --gold-pale: #4a4230;
+    /* On dark the plain gold already clears 8.9:1, so text can use it. */
+    --gold-text: #D4AF37;
     --cream: #121212;
     --cream-dark: #1a1a1a;
     --charcoal: #e8e6e1;
@@ -155,10 +159,12 @@ body::before {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
+    width: 100%;
     height: 1px;
     background: var(--gold);
-    transition: width 0.3s ease;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
 }
 
 .nav-link:hover {
@@ -166,7 +172,7 @@ body::before {
 }
 
 .nav-link:hover::after {
-    width: 100%;
+    transform: scaleX(1);
 }
 
 .nav-link.active {
@@ -174,7 +180,25 @@ body::before {
 }
 
 .nav-link.active::after {
-    width: 100%;
+    transform: scaleX(1);
+}
+
+/*
+ * Nav chrome is visually small (nav links sit at 22px tall, the toggles at
+ * 34x34 and 30x25). Rather than grow the bar, stretch an invisible 44x44 hit
+ * area around each control so touch targets meet WCAG 2.5.5 without changing
+ * how any of it looks.
+ */
+.nav-link::before,
+.theme-toggle::before,
+.nav-toggle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    transform: translate(-50%, -50%);
 }
 
 /* Mobile nav toggle */
@@ -186,6 +210,7 @@ body::before {
     padding: 5px;
     background: none;
     border: none;
+    position: relative;
 }
 
 .nav-toggle span {
@@ -202,6 +227,7 @@ body::before {
     cursor: pointer;
     padding: 8px;
     border-radius: 50%;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -319,7 +345,8 @@ body::before {
 /* Convocation Section */
 .convocation-section {
     background: var(--cream-dark);
-    border-left: 3px solid var(--burgundy);
+    border: 1px solid var(--border-light);
+    border-top: 1px solid var(--burgundy);
     padding: 35px 40px;
     margin-bottom: 50px;
     position: relative;
@@ -363,7 +390,7 @@ body::before {
     font-weight: 400;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--gold-text);
     margin-bottom: 12px;
 }
 
@@ -714,10 +741,12 @@ body::before {
     position: absolute;
     bottom: -2px;
     left: 0;
-    width: 0;
+    width: 100%;
     height: 1px;
     background: var(--gold);
-    transition: width 0.3s ease;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
 }
 
 .contact-email:hover {
@@ -725,7 +754,7 @@ body::before {
 }
 
 .contact-email:hover::after {
-    width: 100%;
+    transform: scaleX(1);
 }
 
 /* Social Links */
@@ -778,7 +807,7 @@ body::before {
     font-weight: 400;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--gold-text);
     margin-bottom: 10px;
 }
 
@@ -803,7 +832,7 @@ body::before {
 }
 
 .footer-contact a:hover {
-    color: var(--gold);
+    color: var(--gold-text);
 }
 
 
@@ -920,14 +949,16 @@ body::before {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
+    width: 100%;
     height: 3px;
     background: var(--gold);
-    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .press-card:hover::after {
-    width: 100%;
+    transform: scaleX(1);
 }
 
 /* Card Cover */
@@ -1332,10 +1363,10 @@ button.video-lightbox-trigger {
 
 .video-lightbox-close {
     position: absolute;
-    top: -2.75rem;
+    top: -3.25rem;
     right: 0;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2.75rem;
+    height: 2.75rem;
     padding: 0;
     background: transparent;
     border: 0;
@@ -1343,6 +1374,13 @@ button.video-lightbox-trigger {
     font-size: 2rem;
     line-height: 1;
     cursor: pointer;
+}
+
+/* A transparent button on a near-black backdrop swallows the default ring. */
+.video-lightbox-close:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 2px;
+    border-radius: 4px;
 }
 
 /* Speaking Section */
@@ -2003,4 +2041,69 @@ button.video-lightbox-trigger {
     .about-bio-grid .bio-section {
         padding: 20px;
     }
+}
+
+/* =====================================================
+   REDUCED MOTION
+   ===================================================== */
+
+/*
+ * Entrance animations on this site start from `opacity: 0` and rely on
+ * `forwards` to land at `opacity: 1`. That makes "turn the animation off" a
+ * trap: `animation: none` would strand every revealed element at zero opacity
+ * and ship a blank page to exactly the people who asked for less motion.
+ *
+ * Instead collapse the timeline to effectively zero and drop the stagger
+ * delays, so the `forwards` fill applies the finished state immediately. The
+ * explicit opacity/transform reset below is the belt to that braces, covering
+ * anything whose animation is overridden elsewhere.
+ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .hero-title,
+    .hero-subtitle,
+    .decorative-star,
+    .gold-line,
+    .section-label,
+    .venture-card,
+    .convocation-section,
+    .press-card,
+    .press-news-item,
+    .press-video-card,
+    .speaking-card,
+    .about-section,
+    .footer {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* 404 */
+.notfound-links {
+    list-style: none;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 2.2;
+    color: var(--text-muted);
+}
+
+.notfound-links a {
+    color: var(--burgundy);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.notfound-links a:hover {
+    border-bottom-color: var(--burgundy);
 }
