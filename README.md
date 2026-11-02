@@ -199,12 +199,17 @@ so the same moment is 1:49 in one and 1:39 in the other.
 
 ## Accessibility Rules
 
-Four things here are load-bearing. Breaking them silently regresses the site:
+Five things here are load-bearing. Breaking them silently regresses the site:
 
 1. **`--gold` is not a text colour on cream.** It lands at 2.28:1, well under
    the 4.5:1 floor. Small type on a light background uses **`--gold-text`**
    (`#856810`, 4.97:1). On the dark cards `--gold` is fine (7.2:1) and is used
    directly. In dark mode `--gold-text` resolves back to the bright gold.
+5. **Dark mode has two background surfaces, not one.** `--cream` is `#121212`
+   and `--cream-dark` is `#1a1a1a`. A text colour tuned against `#121212`
+   alone will miss on `#1a1a1a`, which is the lighter of the two — exactly how
+   `--burgundy` shipped at 4.28:1 on `.convocation-section`. Check any new
+   dark-mode text colour against **`#1a1a1a`**; clearing it clears both.
 2. **Entrance animations start at `opacity: 0`.** The `prefers-reduced-motion`
    block therefore collapses the timeline instead of writing `animation: none`,
    which would strand every revealed element invisible. If you add a reveal,

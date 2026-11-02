@@ -30,7 +30,10 @@
 
 /* Dark Theme */
 [data-theme="dark"] {
-    --burgundy: #b8666f;
+    /* Must clear 4.5:1 on --cream-dark (#1a1a1a), the LIGHTER of the two dark
+       surfaces, not just on --cream (#121212). Tuning against #121212 alone
+       leaves .convocation-subtitle at 4.28:1. This is 4.88:1 / 5.26:1. */
+    --burgundy: #c2707a;
     --burgundy-dark: #8a4048;
     --burgundy-light: #c06a75;
     --gold: #D4AF37;
