@@ -265,25 +265,43 @@
             <section class="press-video-section">
                 <p class="press-label">Conversations</p>
 
-                <button type="button" class="press-video-card video-lightbox-trigger" data-youtube="o6kKOVmkzo8" style="margin-bottom: 1.5rem;">
-                    <p class="press-video-type">FOX 10 Phoenix · Broadcast Segment</p>
-                    <h3 class="press-video-title">ASU Graduates Reflect on Their Time at School</h3>
-                    <p class="press-video-guest">Featured in FOX 10 Phoenix's winter commencement coverage, reflecting on building PIERA and Devalok while at ASU.</p>
-                    <div class="press-video-meta">
-                        <span>FOX 10 Phoenix · December 11, 2025</span>
-                        <span class="press-video-cta">Play video →</span>
+                <div class="press-video-grid">
+
+                <button type="button" class="press-video-card video-lightbox-trigger" data-youtube="o6kKOVmkzo8" data-start="109">
+                    <div class="press-video-cover">
+                        <img src="/images/press/fox10-asu-grads.jpg" alt="FOX 10 Phoenix segment still showing Mudit Lal in convocation regalia beside the ASU 2025 sculpture" loading="lazy" width="1160" height="652">
+                        <div class="press-video-cover-overlay"></div>
+                        <span class="press-video-play" aria-hidden="true"></span>
+                    </div>
+                    <div class="press-video-body">
+                        <p class="press-video-type">FOX 10 Phoenix · Broadcast Segment</p>
+                        <h3 class="press-video-title">ASU Graduates Reflect on Their Time at School</h3>
+                        <p class="press-video-guest">Featured in FOX 10 Phoenix's winter commencement coverage, reflecting on building PIERA and Devalok while at ASU.</p>
+                        <div class="press-video-meta">
+                            <span>FOX 10 Phoenix · December 11, 2025</span>
+                            <span class="press-video-cta">Play from 1:49 →</span>
+                        </div>
                     </div>
                 </button>
 
                 <a href="https://www.youtube.com/watch?v=kGfQ5oDRm7w" target="_blank" rel="noopener" class="press-video-card">
-                    <p class="press-video-type">Official ASU Webinar · YouTube</p>
-                    <h3 class="press-video-title">In conversation with Dr. Sethuraman Panchanathan, Padma Shri recipient | PIERA x ASU</h3>
-                    <p class="press-video-guest">A deep dive into the contribution, presence, and impact of international students within American higher education, featuring perspectives from national science leadership.</p>
-                    <div class="press-video-meta">
-                        <span>Host · June 20, 2025</span>
-                        <span class="press-video-cta">Watch now →</span>
+                    <div class="press-video-cover">
+                        <img src="/images/press/asu-panchanathan-webinar.jpg" alt="PIERA x ASU webinar title card featuring Dr. Sethuraman Panchanathan, Padma Shri recipient" loading="lazy" width="1160" height="652">
+                        <div class="press-video-cover-overlay"></div>
+                        <span class="press-video-play" aria-hidden="true"></span>
+                    </div>
+                    <div class="press-video-body">
+                        <p class="press-video-type">Official ASU Webinar · YouTube</p>
+                        <h3 class="press-video-title">In conversation with Dr. Sethuraman Panchanathan, Padma Shri recipient | PIERA x ASU</h3>
+                        <p class="press-video-guest">A deep dive into the contribution, presence, and impact of international students within American higher education, featuring perspectives from national science leadership.</p>
+                        <div class="press-video-meta">
+                            <span>Host · June 20, 2025</span>
+                            <span class="press-video-cta">Watch now →</span>
+                        </div>
                     </div>
                 </a>
+
+                </div>
             </section>
 
             <!-- Footer -->
@@ -397,9 +415,11 @@
             const frame = document.getElementById('videoLightboxFrame');
             if (!lightbox || !frame) return;
 
-            function openLightbox(youtubeId) {
+            function openLightbox(youtubeId, startSeconds) {
                 const iframe = document.createElement('iframe');
-                iframe.src = 'https://www.youtube.com/embed/' + encodeURIComponent(youtubeId) + '?autoplay=1&rel=0';
+                let src = 'https://www.youtube.com/embed/' + encodeURIComponent(youtubeId) + '?autoplay=1&rel=0';
+                if (startSeconds) src += '&start=' + encodeURIComponent(startSeconds);
+                iframe.src = src;
                 iframe.title = 'Video player';
                 iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
                 iframe.referrerPolicy = 'strict-origin-when-cross-origin';
@@ -420,7 +440,8 @@
             document.querySelectorAll('.video-lightbox-trigger').forEach(trigger => {
                 trigger.addEventListener('click', () => {
                     const id = trigger.getAttribute('data-youtube');
-                    if (id) openLightbox(id);
+                    const start = parseInt(trigger.getAttribute('data-start'), 10);
+                    if (id) openLightbox(id, Number.isFinite(start) && start > 0 ? start : null);
                 });
             });
 
